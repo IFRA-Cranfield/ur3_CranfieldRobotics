@@ -341,13 +341,23 @@
         </geometry>
       </visual>
     </link>
-    <joint name="BASE_TF_joint" type="prismatic" >
-      <parent link="base_link" />
-      <child link="BASE_TF" />
-      <limit effort="10000" lower="0.0" upper="0.0" velocity="0.0"/>
-      <axis xyz="1 0 0" />
-      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-    </joint>
+    
+    <xacro:unless value="${bringup}"> 
+      <joint name="BASE_TF_joint" type="prismatic" >
+        <parent link="base_link" />
+        <child link="BASE_TF" />
+        <limit effort="10000" lower="0.0" upper="0.0" velocity="0.0"/>
+        <axis xyz="1 0 0" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      </joint>
+    </xacro:unless>
+    <xacro:if value="${bringup}"> 
+      <joint name="BASE_TF_joint" type="fixed" >
+        <parent link="base_link" />
+        <child link="BASE_TF" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      </joint>
+    </xacro:if>
 
     <!-- EXTRA LINK + JOINT for the TCP to appear in Gazebo and to be able to calculate TRANSFORMS: -->
     <link name="TCP">
@@ -362,17 +372,23 @@
         </geometry>
       </visual>
     </link>
-    <joint name="TCP_joint" type="prismatic" >
-      <parent link="wrist_3_link" />
-      <child link="TCP" />
-      <limit effort="10000" lower="0.0" upper="0.0" velocity="0.0"/>
-      <axis xyz="1 0 0" />
-      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
-    </joint>
 
-
-    <!-- =================================== -->
-    <!-- ========== END-EFFECTORS ========== -->
+    <xacro:unless value="${bringup}"> 
+      <joint name="TCP_joint" type="prismatic" >
+        <parent link="wrist_3_link" />
+        <child link="TCP" />
+        <limit effort="10000" lower="0.0" upper="0.0" velocity="0.0"/>
+        <axis xyz="1 0 0" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      </joint>
+    </xacro:unless>
+    <xacro:if value="${bringup}"> 
+      <joint name="TCP_joint" type="fixed" >
+        <parent link="wrist_3_link" />
+        <child link="TCP" />
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+      </joint>
+    </xacro:if>
 
     <!-- === ROBOTIQ 2f-85 GRIPPER === -->
 
@@ -688,17 +704,32 @@
       </visual>
     </link>
 
-    <joint name="EE_robotiq_2f85_joint" type="prismatic" >
-      <parent link="robotiq_85_base_link" />
-      <child link="EE_robotiq_2f85" />
-      <limit effort="10000" lower="0.0" upper="0.0" velocity="0.0"/>
-      <axis xyz="1 0 0" />
-      <origin xyz="0.128 0.0 0.0" rpy="0 0 0"/>
-    </joint>
+    <xacro:unless value="${bringup}">
+      <joint name="EE_robotiq_2f85_joint" type="prismatic" >
+        <parent link="robotiq_85_base_link" />
+        <child link="EE_robotiq_2f85" />
+        <limit effort="10000" lower="0.0" upper="0.0" velocity="0.0"/>
+        <axis xyz="1 0 0" />
+        <origin xyz="0.128 0.0 0.0" rpy="0 0 0"/>
+      </joint>
+
+      <!-- LOAD LinkPose Gazebo (ROS2) PLUGIN: -->
+      <gazebo>
+        <plugin name="ros2_linkpose_plugin" filename="libros2_linkpose_plugin.so" >
+          <link>EE_robotiq_2f85</link>
+        </plugin>
+      </gazebo>
+    </xacro:unless>
+
+    <xacro:if value="${bringup}">
+      <joint name="EE_robotiq_2f85_joint" type="fixed" >
+        <parent link="robotiq_85_base_link" />
+        <child link="EE_robotiq_2f85" />
+        <origin xyz="0.128 0.0 0.0" rpy="0 0 0"/>
+      </joint>
+    </xacro:if>
 
     <!-- === ROBOTIQ 2f-85 GRIPPER === -->
-
-    <!-- ========== END-EFFECTORS ========== -->
 
   </xacro:macro>
 </robot>

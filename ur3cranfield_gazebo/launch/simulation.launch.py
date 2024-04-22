@@ -25,33 +25,6 @@
 #                                                                                       #
 # ===================================== COPYRIGHT ===================================== #
 
-# ===================================== COPYRIGHT ===================================== #
-#                                                                                       #
-#  Some of the information used to build the ROS2 UR3-Robot .urdf files in this ROS2    #
-#  repository has been taken from the following resources:                              #
-#       - Universal Robots ROS2 Description:                                            #
-#         https://github.com/UniversalRobots/Universal_Robots_ROS2_Description          #
-#       - Universal Robots ROS2 Gazebo Simulation:                                      #
-#         https://github.com/UniversalRobots/Universal_Robots_ROS2_Gazebo_Simulation    #
-#                                                                                       #
-#  AUTHORS:                                                                             #
-#       - ROS-Industrial - https://rosindustrial.org                                    #
-#       - Universal Robots - https://github.com/UniversalRobots                         #
-#       - Nadia Hammoudeh Garcia, Kelsey Hawkins, G.A. vd. Hoorn, Lovro Ivanov, Mathias #
-#         Ludtke, Wim Meeussen, Felix Messmer, Miguel Prada Sarasola, Denis Stogl,      #
-#         Andy Zelenak, Marvin Grosse Besselmann.                                       #
-#       - Maintainers: Felix Exner (exner@fzi.de), Tristan Schnell (schnell@fzi.de),    #
-#         Lovro Ivanov (lovro.ivanov@gmail.com), Denis Stogl (denis@stoglrobotics.de).  #
-#                                                                                       #
-#  Copyright (c) 2021, Universal Robots A/S                                             #
-#  (ORIGINAL LICENSE) -> Licensed under the BSD 3-Clause License.                       #
-#                                                                                       #
-#  CHANGES MADE:                                                                        #
-#  Robot information/specifications have been taken, and the code has been modified and #
-#  re-organised in accordance with the ros2_SimRealRobotControl standards.              #
-#                                                                                       #
-# ===================================== COPYRIGHT ===================================== #
-
 # ======= CITE OUR WORK ======= #
 # You can cite our work with the following statement:
 # IFRA-Cranfield (2023) ROS 2 Sim-to-Real Robot Control. URL: https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl.
