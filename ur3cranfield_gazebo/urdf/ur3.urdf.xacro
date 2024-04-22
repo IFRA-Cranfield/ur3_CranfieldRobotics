@@ -1,0 +1,128 @@
+<?xml version="1.0" ?>
+
+<!-- 
+
+# ===================================== COPYRIGHT ===================================== #
+#                                                                                       #
+#  IFRA (Intelligent Flexible Robotics and Assembly) Group, CRANFIELD UNIVERSITY        #
+#  Created on behalf of the IFRA Group at Cranfield University, United Kingdom          #
+#  E-mail: IFRA@cranfield.ac.uk                                                         #
+#                                                                                       #
+#  Licensed under the Apache-2.0 License.                                               #
+#  You may not use this file except in compliance with the License.                     #
+#  You may obtain a copy of the License at: http://www.apache.org/licenses/LICENSE-2.0  #
+#                                                                                       #
+#  Unless required by applicable law or agreed to in writing, software distributed      #
+#  under the License is distributed on an "as-is" basis, without warranties or          #
+#  conditions of any kind, either express or implied. See the License for the specific  #
+#  language governing permissions and limitations under the License.                    #
+#                                                                                       #
+#  IFRA Group - Cranfield University                                                    #
+#  AUTHORS: Mikel Bueno Viso - Mikel.Bueno-Viso@cranfield.ac.uk     (ROS 2 Packages)    #
+#           James Fowler     - j.fowler@cranfield.ac.uk             (UR3 Cell Design)   #
+#           Daniel Oakley    - daniel.oakley@cranfield.ac.uk        (UR3 Cell Design)   #
+#           Jamie Rice       - jamie.rice@cranfield.ac.uk           (UR3 Cell Design)   #
+#                                                                                       #
+#  Date: April, 2024.                                                                   #
+#                                                                                       #
+# ===================================== COPYRIGHT ===================================== #
+
+# ===================================== COPYRIGHT ===================================== #
+#                                                                                       #
+#  Some of the information used to build the ROS2 UR3-Robot .urdf files in this ROS2    #
+#  repository has been taken from the following resources:                              #
+#       - Universal Robots ROS2 Description:                                            #
+#         https://github.com/UniversalRobots/Universal_Robots_ROS2_Description          #
+#       - Universal Robots ROS2 Gazebo Simulation:                                      #
+#         https://github.com/UniversalRobots/Universal_Robots_ROS2_Gazebo_Simulation    #
+#                                                                                       #
+#  AUTHORS:                                                                             #
+#       - ROS-Industrial - https://rosindustrial.org                                    #
+#       - Universal Robots - https://github.com/UniversalRobots                         #
+#       - Nadia Hammoudeh Garcia, Kelsey Hawkins, G.A. vd. Hoorn, Lovro Ivanov, Mathias #
+#         Ludtke, Wim Meeussen, Felix Messmer, Miguel Prada Sarasola, Denis Stogl,      #
+#         Andy Zelenak, Marvin Grosse Besselmann.                                       #
+#       - Maintainers: Felix Exner (exner@fzi.de), Tristan Schnell (schnell@fzi.de),    #
+#         Lovro Ivanov (lovro.ivanov@gmail.com), Denis Stogl (denis@stoglrobotics.de).  #
+#                                                                                       #
+#  Copyright (c) 2021, Universal Robots A/S                                             #
+#  (ORIGINAL LICENSE) -> Licensed under the BSD 3-Clause License.                       #
+#                                                                                       #
+#  CHANGES MADE:                                                                        #
+#  Robot information/specifications have been taken, and the code has been modified and #
+#  re-organised in accordance with the ros2_SimRealRobotControl standards.              #
+#                                                                                       #
+# ===================================== COPYRIGHT ===================================== #
+
+# ======= CITE OUR WORK ======= #
+# You can cite our work with the following statement:
+# IFRA-Cranfield (2023) ROS 2 Sim-to-Real Robot Control. URL: https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl.
+# IFRA-Cranfield (2024) UR3 Cranfield Robotics Cell. URL: https://github.com/IFRA-Cranfield/ur3_CranfieldRobotics.
+
+-->
+
+<robot name="ur3" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- PASS ARGUMENTS: -->
+
+  <xacro:arg name="bringup" default="false"/>
+  <xacro:property name="bringup" value="$(arg bringup)"/>
+  <xacro:arg name="robot_ip" default="0.0.0.0"/>
+  <xacro:property name="robot_ip" value="$(arg robot_ip)"/>
+
+  <xacro:arg name="script_filename" default="none"/>
+  <xacro:property name="script_filename" value="$(arg script_filename)"/>
+  
+  <xacro:arg name="input_recipe_filename" default="none"/>
+  <xacro:property name="input_recipe_filename" value="$(arg input_recipe_filename)"/>
+  
+  <xacro:arg name="output_recipe_filename" default="none"/>
+  <xacro:property name="output_recipe_filename" value="$(arg output_recipe_filename)"/>
+
+
+  <!-- Include XACRO-MACRO file of the UR3: -->
+  <xacro:include filename="$(find ur3cranfield_gazebo)/urdf/ur3_macro.urdf.xacro"/>	
+  <xacro:ur3 
+    bringup="${bringup}"
+    robot_ip="${robot_ip}"
+    script_filename="${script_filename}"
+    input_recipe_filename="${input_recipe_filename}"
+    output_recipe_filename="${output_recipe_filename}"
+    />
+
+  <!-- World link -->
+  <link name="world"/>
+
+  <!-- === Cranfield Robotics UR3 Cell === -->
+  
+  <link name='ur3_stand'>
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/ur3stand_NoBox.dae" scale="1 1 1" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/ur3stand_NoBox.dae" scale="1 1 1" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1000.0"/>
+      <inertia ixx="500.0" ixy="500.0" ixz="500.0" iyy="500.0" iyz="500.0" izz="500.0" />
+    </inertial>
+  </link>
+
+  <joint name="world_joint" type="fixed">
+      <parent link="world" />
+      <child link = "ur3_stand" />
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint>
+  <joint name="ur_joint" type="fixed">
+    <parent link="ur3_stand" />
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 0.85" rpy="0.0 0.0 0.0" /> 
+  </joint>
+
+</robot>
