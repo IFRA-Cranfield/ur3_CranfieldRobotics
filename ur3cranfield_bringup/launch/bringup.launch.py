@@ -104,10 +104,13 @@ def generate_launch_description():
     print("")
     
     # UR_ROBOT_DRIVER variables: 
-    ur_path = os.path.join(get_package_share_directory('ur_robot_driver'))
-    script_filename = os.path.join(ur_path,
+    
+    urcl_path = os.path.join(get_package_share_directory('ur_client_library'))
+    script_filename = os.path.join(urcl_path,
                               'resources',
-                              'ros_control.urscript')
+                              'external_control.urscript')
+    
+    ur_path = os.path.join(get_package_share_directory('ur_robot_driver'))
     input_recipe_filename = os.path.join(ur_path,
                               'resources',
                               'rtde_input_recipe.txt')
@@ -160,8 +163,8 @@ def generate_launch_description():
         "ur_controllers.yaml",
     )
     ros2_control_node = Node(
-        package="ur_robot_driver",
-        executable="ur_ros2_control_node",
+        package="controller_manager",
+        executable="ros2_control_node",
         parameters=[robot_description, ros2_controllers_path],
         output="both",
     )
@@ -177,7 +180,6 @@ def generate_launch_description():
         executable="spawner",
         arguments=["ur_controller", "-c", "/controller_manager"],
     )
-
 
     # *********************** MoveIt!2 *********************** #   
     
@@ -237,6 +239,7 @@ def generate_launch_description():
             pilz_industrial_motion_planner/MoveGroupSequenceService"""
     }
 
+    print("AA")
     # START NODE -> MOVE GROUP:
     run_move_group_node = Node(
         package="moveit_ros_move_group",
@@ -247,6 +250,7 @@ def generate_launch_description():
             robot_description_semantic,
             kinematics_yaml,
             
+    print("AA")
             pilz_planning_pipeline_config,
 
             joint_limits,
