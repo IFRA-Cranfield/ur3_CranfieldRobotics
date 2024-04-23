@@ -98,7 +98,7 @@
   <xacro:arg name="use_tool_communication" default="false"/>
   <xacro:property name="use_tool_communication" value="$(arg use_tool_communication)"/>
   
-  <xacro:arg name="hash_kinematics" default="calib_9122066269688285636"/>
+  <xacro:arg name="hash_kinematics" default="calib_604802427893924187"/>
   <xacro:property name="hash_kinematics" value="$(arg hash_kinematics)"/>
   
   <xacro:arg name="tool_voltage" default="24"/>

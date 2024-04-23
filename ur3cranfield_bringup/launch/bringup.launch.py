@@ -295,7 +295,7 @@ def generate_launch_description():
         package="ros2srrc_execution",
         executable="move",
         output="screen",
-        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "gazebo"}],
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "bringup"}],
     )
     RobMoveInterface = Node(
         name="robmove",
@@ -316,7 +316,7 @@ def generate_launch_description():
         package="ros2srrc_execution",
         executable="sequence",
         output="screen",
-        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "gazebo"}],
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "bringup"}],
     )
 
     # ***** RETURN LAUNCH DESCRIPTION ***** #

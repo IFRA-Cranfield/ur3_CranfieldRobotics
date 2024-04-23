@@ -210,6 +210,6 @@
     <xacro:property name="wrist_3_visual_offset" value="-0.082" scope="parent"/>
     
     <!--KINEMATICS HASH-->
-    <xacro:property name="kinematics_hash" value="calib_9122066269688285636" scope="parent"/>
+    <xacro:property name="kinematics_hash" value="calib_604802427893924187" scope="parent"/>
   </xacro:macro>
 </robot>
