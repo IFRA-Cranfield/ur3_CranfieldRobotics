@@ -79,11 +79,14 @@
   
   <xacro:arg name="script_command_port" default="50004"/>
   <xacro:property name="script_command_port" value="$(arg script_command_port)"/>
+
+  <xacro:arg name="trajectory_port" default="50003"/>
+  <xacro:property name="trajectory_port" value="$(arg trajectory_port)"/>
   
   <xacro:arg name="tf_prefix" default=""/>
   <xacro:property name="tf_prefix" value="$(arg tf_prefix)"/>
   
-  <xacro:arg name="non_blocking_read" default="0"/>
+  <xacro:arg name="non_blocking_read" default="true"/>
   <xacro:property name="non_blocking_read" value="$(arg non_blocking_read)"/>
   
   <xacro:arg name="servoj_gain" default="2000"/>
@@ -121,6 +124,9 @@
 
   <xacro:arg name="tool_tcp_port" default="54321"/>
   <xacro:property name="tool_tcp_port" value="$(arg tool_tcp_port)"/>
+
+  <xacro:arg name="keep_alive_count" default="2"/>
+  <xacro:property name="keep_alive_count" value="$(arg keep_alive_count)"/>
 
 
   <!-- UR3_CONTROL: -->
@@ -172,6 +178,7 @@
           <param name="script_sender_port">${script_sender_port}</param>
           <param name="reverse_ip">${reverse_ip}</param>
           <param name="script_command_port">${script_command_port}</param>
+          <param name="trajectory_port">${trajectory_port}</param>
           <param name="tf_prefix">"${tf_prefix}"</param>
           <param name="non_blocking_read">${non_blocking_read}</param>
           <param name="servoj_gain">${servoj_gain}</param>
@@ -186,6 +193,7 @@
           <param name="tool_tx_idle_chars">${tool_tx_idle_chars}</param>
           <param name="tool_device_name">${tool_device_name}</param>
           <param name="tool_tcp_port">${tool_tcp_port}</param>
+          <param name="keep_alive_count">${keep_alive_count}</param>
         </hardware>
       </xacro:if>
 

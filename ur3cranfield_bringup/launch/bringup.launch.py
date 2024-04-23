@@ -239,7 +239,6 @@ def generate_launch_description():
             pilz_industrial_motion_planner/MoveGroupSequenceService"""
     }
 
-    print("AA")
     # START NODE -> MOVE GROUP:
     run_move_group_node = Node(
         package="moveit_ros_move_group",
@@ -250,7 +249,6 @@ def generate_launch_description():
             robot_description_semantic,
             kinematics_yaml,
             
-    print("AA")
             pilz_planning_pipeline_config,
 
             joint_limits,
