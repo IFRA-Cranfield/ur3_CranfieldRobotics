@@ -216,7 +216,7 @@ def generate_launch_description():
     pilz_cartesian_limits = {'robot_description_planning': pilz_cartesian_limits_yaml}
 
     # MoveIt!2 Controllers:
-    moveit_simple_controllers_yaml = load_yaml("ur3cranfield_moveit2", "config/ur_controllers.yaml"  )
+    moveit_simple_controllers_yaml = load_yaml("ur3cranfield_bringup", "config/moveit_controllers.yaml"  )
 
     moveit_controllers = {
         "moveit_simple_controller_manager": moveit_simple_controllers_yaml,
