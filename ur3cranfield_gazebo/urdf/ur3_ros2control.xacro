@@ -83,9 +83,6 @@
   <xacro:arg name="trajectory_port" default="50003"/>
   <xacro:property name="trajectory_port" value="$(arg trajectory_port)"/>
   
-  <xacro:arg name="tf_prefix" default=""/>
-  <xacro:property name="tf_prefix" value="$(arg tf_prefix)"/>
-  
   <xacro:arg name="non_blocking_read" default="true"/>
   <xacro:property name="non_blocking_read" value="$(arg non_blocking_read)"/>
   
@@ -130,7 +127,7 @@
 
 
   <!-- UR3_CONTROL: -->
-  <xacro:macro name="ur3_ros2control" params="bringup robot_ip script_filename input_recipe_filename output_recipe_filename" >
+  <xacro:macro name="ur3_ros2control" params="bringup robot_ip script_filename input_recipe_filename output_recipe_filename tf_prefix" >
 
     <!-- 1. ROS2_CONTROL tag name: -->
     <!-- A. GAZEBO SIMULATION: -->
@@ -179,7 +176,7 @@
           <param name="reverse_ip">${reverse_ip}</param>
           <param name="script_command_port">${script_command_port}</param>
           <param name="trajectory_port">${trajectory_port}</param>
-          <param name="tf_prefix">"${tf_prefix}"</param>
+          <param name="tf_prefix">${tf_prefix}</param>
           <param name="non_blocking_read">${non_blocking_read}</param>
           <param name="servoj_gain">${servoj_gain}</param>
           <param name="servoj_lookahead_time">${servoj_lookahead_time}</param>
@@ -190,205 +187,240 @@
           <param name="tool_baud_rate">${tool_baud_rate}</param>
           <param name="tool_stop_bits">${tool_stop_bits}</param>
           <param name="tool_rx_idle_chars">${tool_rx_idle_chars}</param>
-          <param name="tool_tx_idle_chars">${tool_tx_idle_chars}</param>
+          <param name="tool_tx_idle_chatf_prefixrs">${tool_tx_idle_chars}</param>
           <param name="tool_device_name">${tool_device_name}</param>
           <param name="tool_tcp_port">${tool_tcp_port}</param>
           <param name="keep_alive_count">${keep_alive_count}</param>
         </hardware>
+
+        <sensor name="${tf_prefix}tcp_fts_sensor">
+          <state_interface name="force.x"/>
+          <state_interface name="force.y"/>
+          <state_interface name="force.z"/> False
+          <state_interface name="torque.x"/>
+          <state_interface name="torque.y"/>
+          <state_interface name="torque.z"/>
+        </sensor>
+
       </xacro:if>
 
-      <joint name="shoulder_pan_joint">
+      <joint name="${tf_prefix}shoulder_pan_joint">
         <command_interface name="position">
           <param name="min">${-2*pi}</param>
           <param name="max">${2*pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-3.15</param>
-          <param name="max">3.15</param>
+          <param name="min">-0.9</param>
+          <param name="max">0.9</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
       </joint>
-      <joint name="shoulder_lift_joint">
+      <joint name="${tf_prefix}shoulder_lift_joint">
         <command_interface name="position">
           <param name="min">${-2*pi}</param>
           <param name="max">${2*pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-3.15</param>
-          <param name="max">3.15</param>
+          <param name="min">-0.9</param>
+          <param name="max">0.9</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">${-pi/2}</param>
         </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
       </joint>
-      <joint name="elbow_joint">
+      <joint name="${tf_prefix}elbow_joint">
         <command_interface name="position">
           <param name="min">${-pi}</param>
           <param name="max">${pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-3.15</param>
-          <param name="max">3.15</param>
+          <param name="min">-0.9</param>
+          <param name="max">0.9</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
       </joint>
-      <joint name="wrist_1_joint">
+      <joint name="${tf_prefix}wrist_1_joint">
         <command_interface name="position">
           <param name="min">${-2*pi}</param>
           <param name="max">${2*pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-6.28</param>
-          <param name="max">6.28</param>
+          <param name="min">-1.85</param>
+          <param name="max">1.85</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">${-pi/2}</param>
         </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
       </joint>
-      <joint name="wrist_2_joint">
+      <joint name="${tf_prefix}wrist_2_joint">
         <command_interface name="position">
           <param name="min">${-2*pi}</param>
           <param name="max">${2*pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-6.28</param>
-          <param name="max">6.28</param>
+          <param name="min">-1.85</param>
+          <param name="max">1.85</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
+        <state_interface name="velocity">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="effort">
+          <param name="initial_value">0.0</param>
+        </state_interface>
       </joint>
-      <joint name="wrist_3_joint">
+      <joint name="${tf_prefix}wrist_3_joint">
         <command_interface name="position">
           <param name="min">${-2*pi}</param>
           <param name="max">${2*pi}</param>
         </command_interface>
         <command_interface name="velocity">
-          <param name="min">-6.28</param>
-          <param name="max">6.28</param>
+          <param name="min">-1.85</param>
+          <param name="max">1.85</param>
         </command_interface>
         <state_interface name="position">
           <param name="initial_value">0.0</param>
         </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-
-      <!-- === ROBOTIQ 2f-85 GRIPPER === -->
-
-      <joint name="robotiq_85_left_knuckle_joint">
-        <command_interface name="position">
-          <param name="min">-0.05</param>
-          <param name="max">0.80285</param>
-        </command_interface>
-        <command_interface name="velocity">
-          <param name="min">0.5</param>
-          <param name="max">0.5</param>
-        </command_interface>
-        <state_interface name="position">
+        <state_interface name="velocity">
           <param name="initial_value">0.0</param>
         </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-
-      <joint name="robotiq_85_right_knuckle_joint">
-        <command_interface name="position">
-          <param name="min">-0.05</param>
-          <param name="max">0.80285</param>
-        </command_interface>
-        <command_interface name="velocity">
-          <param name="min">0.5</param>
-          <param name="max">0.5</param>
-        </command_interface>
-        <state_interface name="position">
+        <state_interface name="effort">
           <param name="initial_value">0.0</param>
         </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
       </joint>
-
-      <joint name="robotiq_85_left_inner_knuckle_joint">
-        <command_interface name="position">
-          <param name="min">-0.05</param>
-          <param name="max">0.80285</param>
-        </command_interface>
-        <command_interface name="velocity">
-          <param name="min">0.5</param>
-          <param name="max">0.5</param>
-        </command_interface>
-        <state_interface name="position">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-
-      <joint name="robotiq_85_right_inner_knuckle_joint">
-        <command_interface name="position">
-          <param name="min">-0.05</param>
-          <param name="max">0.80285</param>
-        </command_interface>
-        <command_interface name="velocity">
-          <param name="min">0.5</param>
-          <param name="max">0.5</param>
-        </command_interface>
-        <state_interface name="position">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-
-      <joint name="robotiq_85_left_finger_tip_joint">
-        <command_interface name="position">
-          <param name="min">-0.80285</param>
-          <param name="max">0.05</param>
-        </command_interface>
-        <command_interface name="velocity">
-          <param name="min">0.5</param>
-          <param name="max">0.5</param>
-        </command_interface>
-        <state_interface name="position">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-
-      <joint name="robotiq_85_right_finger_tip_joint">
-        <command_interface name="position">
-          <param name="min">-0.80285</param>
-          <param name="max">0.05</param>
-        </command_interface>
-        <command_interface name="velocity">
-          <param name="min">0.5</param>
-          <param name="max">0.5</param>
-        </command_interface>
-        <state_interface name="position">
-          <param name="initial_value">0.0</param>
-        </state_interface>
-        <state_interface name="velocity"/>
-        <state_interface name="effort"/>
-      </joint>
-
-      <!-- === ROBOTIQ 2f-85 GRIPPER === -->
-
+      
       <xacro:unless value="${bringup}"> 
+
+      <!-- === ROBOTIQ 2f-85 GRIPPER === -->
+
+        <joint name="robotiq_85_left_knuckle_joint">
+          <command_interface name="position">
+            <param name="min">-0.05</param>
+            <param name="max">0.80285</param>
+          </command_interface>
+          <command_interface name="velocity">
+            <param name="min">0.5</param>
+            <param name="max">0.5</param>
+          </command_interface>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+        </joint>
+
+        <joint name="robotiq_85_right_knuckle_joint">
+          <command_interface name="position">
+            <param name="min">-0.05</param>
+            <param name="max">0.80285</param>
+          </command_interface>
+          <command_interface name="velocity">
+            <param name="min">0.5</param>
+            <param name="max">0.5</param>
+          </command_interface>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+        </joint>
+
+        <joint name="robotiq_85_left_inner_knuckle_joint">
+          <command_interface name="position">
+            <param name="min">-0.05</param>
+            <param name="max">0.80285</param>
+          </command_interface>
+          <command_interface name="velocity">
+            <param name="min">0.5</param>
+            <param name="max">0.5</param>
+          </command_interface>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+        </joint>
+
+        <joint name="robotiq_85_right_inner_knuckle_joint">
+          <command_interface name="position">
+            <param name="min">-0.05</param>
+            <param name="max">0.80285</param>
+          </command_interface>
+          <command_interface name="velocity">
+            <param name="min">0.5</param>
+            <param name="max">0.5</param>
+          </command_interface>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+        </joint>
+
+        <joint name="robotiq_85_left_finger_tip_joint">
+          <command_interface name="position">
+            <param name="min">-0.80285</param>
+            <param name="max">0.05</param>
+          </command_interface>
+          <command_interface name="velocity">
+            <param name="min">0.5</param>
+            <param name="max">0.5</param>
+          </command_interface>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+        </joint>
+
+        <joint name="robotiq_85_right_finger_tip_joint">
+          <command_interface name="position">
+            <param name="min">-0.80285</param>
+            <param name="max">0.05</param>
+          </command_interface>
+          <command_interface name="velocity">
+            <param name="min">0.5</param>
+            <param name="max">0.5</param>
+          </command_interface>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity"/>
+          <state_interface name="effort"/>
+        </joint>
+
+      <!-- === ROBOTIQ 2f-85 GRIPPER === -->
+
         <joint name="BASE_TF_joint">
           <command_interface name="position"/>
           <command_interface name="velocity"/>

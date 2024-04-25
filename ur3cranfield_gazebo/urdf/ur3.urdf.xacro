@@ -79,6 +79,9 @@
   <xacro:arg name="output_recipe_filename" default="none"/>
   <xacro:property name="output_recipe_filename" value="$(arg output_recipe_filename)"/>
 
+  <xacro:arg name="tf_prefix" default=""/>
+  <xacro:property name="tf_prefix" value="$(arg tf_prefix)"/>
+
 
   <!-- Include XACRO-MACRO file of the UR3: -->
   <xacro:include filename="$(find ur3cranfield_gazebo)/urdf/ur3_macro.urdf.xacro"/>	
@@ -88,6 +91,7 @@
     script_filename="${script_filename}"
     input_recipe_filename="${input_recipe_filename}"
     output_recipe_filename="${output_recipe_filename}"
+    tf_prefix="${tf_prefix}"
     />
 
   <!-- World link -->
@@ -95,7 +99,7 @@
 
   <!-- === Cranfield Robotics UR3 Cell === -->
   
-  <link name='ur3_stand'>
+  <link name='${tf_prefix}ur3_stand'>
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
@@ -114,14 +118,14 @@
     </inertial>
   </link>
 
-  <joint name="world_joint" type="fixed">
+  <joint name="${tf_prefix}world_joint" type="fixed">
       <parent link="world" />
-      <child link = "ur3_stand" />
+      <child link = "${tf_prefix}ur3_stand" />
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     </joint>
-  <joint name="ur_joint" type="fixed">
-    <parent link="ur3_stand" />
-    <child link = "base_link" />
+  <joint name="${tf_prefix}ur_joint" type="fixed">
+    <parent link="${tf_prefix}ur3_stand" />
+    <child link = "${tf_prefix}base_link" />
     <origin xyz="0.0 0.0 0.85" rpy="0.0 0.0 ${pi}" /> 
   </joint>
 

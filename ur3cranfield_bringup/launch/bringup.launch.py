@@ -89,6 +89,12 @@ def generate_launch_description():
         print("ERROR: robot_ip INPUT ARGUMENT has not been defined. Please try again.")
         print("Closing... BYE!")
         exit()
+    # tf_prefix:
+    tf_prefix = AssignArgument("tf_prefix")
+    if tf_prefix != None:
+        None
+    else:
+        tf_prefix = ""
 
     # ========== COMMAND LINE ARGUMENTS ========== #
     print("")
@@ -132,6 +138,7 @@ def generate_launch_description():
         "robot_ip": robot_ip, 
         "bringup": "true",
 
+        "tf_prefix": tf_prefix,
         "script_filename": script_filename,
         "input_recipe_filename": input_recipe_filename,
         "output_recipe_filename": output_recipe_filename,
@@ -165,8 +172,14 @@ def generate_launch_description():
     ros2_control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[robot_description, ros2_controllers_path],
+        parameters=[robot_description, ros2_controllers_path, tf_prefix],
         output="both",
+    )
+    # IO and STATUS CONTROLLER:
+    io_and_status_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["io_and_status_controller", "--controller-manager", "/controller_manager"],
     )
     # Joint STATE BROADCASTER:
     joint_state_broadcaster_spawner = Node(
@@ -174,11 +187,23 @@ def generate_launch_description():
         executable="spawner",
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
     )
-    # Joint TRAJECTORY Controller:
-    joint_trajectory_controller_spawner = Node(
+    # Speed scaling STATE BROADCASTER:
+    speed_scaling_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["ur_controller", "-c", "/controller_manager"],
+        arguments=["speed_scaling_state_broadcaster", "--controller-manager", "/controller_manager"],
+    )
+    # Joint TRAJECTORY Controller:
+    #joint_trajectory_controller_spawner = Node(
+    #    package="controller_manager",
+    #    executable="spawner",
+    #    arguments=["ur_controller", "-c", "/controller_manager"],
+    #)
+    # Joint (SCALED) TRAJECTORY Controller:
+    scaled_joint_trajectory_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["scaled_joint_trajectory_controller", "-c", "/controller_manager"],
     )
 
     # *********************** MoveIt!2 *********************** #   
@@ -223,8 +248,8 @@ def generate_launch_description():
         "moveit_controller_manager": "moveit_simple_controller_manager/MoveItSimpleControllerManager",
     }
     trajectory_execution = {
-        "moveit_manage_controllers": True,
-        "trajectory_execution.allowed_execution_duration_scaling": 1.2,
+        "moveit_manage_controllers": False,
+        "trajectory_execution.allowed_execution_duration_scaling": 5.0,
         "trajectory_execution.allowed_goal_duration_margin": 0.5,
         "trajectory_execution.allowed_start_tolerance": 0.01,
     }
@@ -326,13 +351,16 @@ def generate_launch_description():
         ros2_control_node,
         node_robot_state_publisher,
         static_tf,
+        io_and_status_controller_spawner,
         joint_state_broadcaster_spawner,
-        joint_trajectory_controller_spawner,
+        speed_scaling_state_broadcaster_spawner,
+        #joint_trajectory_controller_spawner,
+        scaled_joint_trajectory_controller_spawner,
         
         # 2. Step: Launch MoveIt!2:
         RegisterEventHandler(
             OnProcessExit(
-                target_action = joint_trajectory_controller_spawner,
+                target_action = scaled_joint_trajectory_controller_spawner,
                 on_exit = [
                     rviz_arg,
                     run_move_group_node,
