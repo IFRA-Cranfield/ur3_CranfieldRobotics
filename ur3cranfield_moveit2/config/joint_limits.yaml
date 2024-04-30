@@ -7,6 +7,8 @@
 # cases. For specific applications, higher values might lead to better execution performance.
 
 joint_limits:
+
+  # UR3:
   shoulder_pan_joint:
     has_velocity_limits: true
     max_velocity: 0.9
@@ -37,6 +39,8 @@ joint_limits:
     max_velocity: 1.85
     has_acceleration_limits: true
     max_acceleration: 5.0
+  
+  # Robotiq 2f-85:
   robotiq_85_left_knuckle_joint:
     has_velocity_limits: true
     max_velocity: 5.0
@@ -63,6 +67,18 @@ joint_limits:
     has_acceleration_limits: true
     max_acceleration: 1.00
   robotiq_85_right_finger_tip_joint:
+    has_velocity_limits: true
+    max_velocity: 5.0
+    has_acceleration_limits: true
+    max_acceleration: 1.00
+
+  # Robotiq Hand-E:
+  robotiq_hande_left_finger_joint:
+    has_velocity_limits: true
+    max_velocity: 5.0
+    has_acceleration_limits: true
+    max_acceleration: 1.00
+  robotiq_hande_right_finger_joint:
     has_velocity_limits: true
     max_velocity: 5.0
     has_acceleration_limits: true

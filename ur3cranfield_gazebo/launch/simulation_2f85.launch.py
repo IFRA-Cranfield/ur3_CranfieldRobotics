@@ -87,10 +87,11 @@ def generate_launch_description():
     print("===== UR3 Robot: Cranfield Robotics =====")
     print("Robot configuration:")
     print("")
+    
     # Cell Layout:
     print("- Cell layout: Cranfield University - IA Lab stand.")
     # End-Effector:
-    print("- End-effector: Robotiq 2f-85 Parallel Gripper.")
+    print("- End-effector: Robotiq 2f-85 Parallel Gripper.")  
     print("")
 
     # ***** ROBOT DESCRIPTION ***** #
@@ -103,7 +104,10 @@ def generate_launch_description():
                               'ur3.urdf.xacro')
     # Generate ROBOT_DESCRIPTION for UR3:
     doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc, mappings={})
+    xacro.process_doc(doc, mappings={
+        "robotiq_2f85": "true",
+        "robotiq_hande": "false"
+    })
     robot_description_config = doc.toxml()
     robot_description = {'robot_description': robot_description_config}
 

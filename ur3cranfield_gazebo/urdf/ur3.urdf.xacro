@@ -82,6 +82,11 @@
   <xacro:arg name="tf_prefix" default=""/>
   <xacro:property name="tf_prefix" value="$(arg tf_prefix)"/>
 
+  <xacro:arg name="robotiq_2f85" default="false"/>
+  <xacro:property name="robotiq_2f85" value="$(arg robotiq_2f85)"/>
+  <xacro:arg name="robotiq_hande" default="false"/>
+  <xacro:property name="robotiq_hande" value="$(arg robotiq_hande)"/>
+
 
   <!-- Include XACRO-MACRO file of the UR3: -->
   <xacro:include filename="$(find ur3cranfield_gazebo)/urdf/ur3_macro.urdf.xacro"/>	
@@ -92,7 +97,8 @@
     input_recipe_filename="${input_recipe_filename}"
     output_recipe_filename="${output_recipe_filename}"
     tf_prefix="${tf_prefix}"
-    />
+    robotiq_2f85="${robotiq_2f85}"
+    robotiq_hande="${robotiq_hande}"/>
 
   <!-- World link -->
   <link name="world"/>
@@ -126,7 +132,7 @@
   <joint name="${tf_prefix}ur_joint" type="fixed">
     <parent link="${tf_prefix}ur3_stand" />
     <child link = "${tf_prefix}base_link" />
-    <origin xyz="0.0 0.0 0.85" rpy="0.0 0.0 ${pi}" /> 
+    <origin xyz="0.0 0.0 0.85" rpy="0.0 0.0 0.0" /> 
   </joint>
 
   <!-- ARUCO TAGS -->

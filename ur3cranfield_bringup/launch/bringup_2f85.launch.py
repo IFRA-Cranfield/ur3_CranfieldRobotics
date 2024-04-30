@@ -30,11 +30,11 @@
 # IFRA-Cranfield (2023) ROS 2 Sim-to-Real Robot Control. URL: https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl.
 # IFRA-Cranfield (2024) UR3 Cranfield Robotics Cell. URL: https://github.com/IFRA-Cranfield/ur3_CranfieldRobotics.
 
-# moveit2.launch.py:
-# Launch file for the UR3 Robot GAZEBO + MoveIt!2 SIMULATION (+ Robot/Gripper triggers) in ROS2 Humble:
+# ur3_bringup.launch.py:
+# Launch file for the UR3 Robot CONTROL BRINGUP in ROS2 Humble:
 
 # Import libraries:
-import os
+import os, sys
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
@@ -66,34 +66,66 @@ def load_yaml(package_name, file_path):
     except EnvironmentError:
         # parent of IOError, OSError *and* WindowsError where available.
         return None
+    
+# EVALUATE INPUT ARGUMENTS:
+def AssignArgument(ARGUMENT):
+    
+    ARGUMENTS = sys.argv
+    for y in ARGUMENTS:
+        if (ARGUMENT + ":=") in y:
+            ARG = y.replace((ARGUMENT + ":="),"")
+            return(ARG)
 
 # ========== **GENERATE LAUNCH DESCRIPTION** ========== #
 def generate_launch_description():
     
-    # ***** GAZEBO ***** #   
-    # DECLARE Gazebo WORLD file:
-    ur3cranfield_gazebo = os.path.join(
-        get_package_share_directory('ur3cranfield_gazebo'),
-        'worlds',
-        'ur3.world')
-    # DECLARE Gazebo LAUNCH file:
-    gazebo = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('gazebo_ros'), 'launch'), '/gazebo.launch.py']),
-                launch_arguments={'world': ur3cranfield_gazebo}.items(),
-             )
-
+    # ========== INPUT ARGUMENTS ========== #
+    # Robot IP:
+    robot_ip = AssignArgument("ip_address")
+    if robot_ip != None:
+        None
+    else:
+        print("")
+        print("ERROR: robot_ip INPUT ARGUMENT has not been defined. Please try again.")
+        print("Closing... BYE!")
+        exit()
+    # tf_prefix:
+    tf_prefix = AssignArgument("tf_prefix")
+    if tf_prefix != None:
+        None
+    else:
+        tf_prefix = ""
 
     # ========== COMMAND LINE ARGUMENTS ========== #
     print("")
     print("===== UR3 Robot: Cranfield Robotics =====")
     print("Robot configuration:")
     print("")
+    
     # Cell Layout:
     print("- Cell layout: Cranfield University - IA Lab stand.")
+    
     # End-Effector:
     print("- End-effector: Robotiq 2f-85 Parallel Gripper.")
+
+    # Robot IP Address:
+    print("- Robot IP Address: " + robot_ip)
     print("")
+    
+    # UR_ROBOT_DRIVER variables: 
+    
+    urcl_path = os.path.join(get_package_share_directory('ur_client_library'))
+    script_filename = os.path.join(urcl_path,
+                              'resources',
+                              'external_control.urscript')
+    
+    ur_path = os.path.join(get_package_share_directory('ur_robot_driver'))
+    input_recipe_filename = os.path.join(ur_path,
+                              'resources',
+                              'rtde_input_recipe.txt')
+    output_recipe_filename = os.path.join(ur_path,
+                              'resources',
+                              'rtde_output_recipe.txt')
 
     # ***** ROBOT DESCRIPTION ***** #
     # UR3 Description file package:
@@ -105,17 +137,28 @@ def generate_launch_description():
                               'ur3.urdf.xacro')
     # Generate ROBOT_DESCRIPTION for UR3:
     doc = xacro.parse(open(xacro_file))
-    xacro.process_doc(doc, mappings={})
+    xacro.process_doc(doc, mappings={
+        "robot_ip": robot_ip, 
+        "bringup": "true",
+        
+        "robotiq_2f85": "true",
+        "robotiq_hande": "false",
+
+        "tf_prefix": tf_prefix,
+        "script_filename": script_filename,
+        "input_recipe_filename": input_recipe_filename,
+        "output_recipe_filename": output_recipe_filename,
+        })
     robot_description_config = doc.toxml()
     robot_description = {'robot_description': robot_description_config}
 
-    # SPAWN ROBOT TO GAZEBO:
-    spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-topic', 'robot_description',
-                                   '-entity', 'ur3'],
-                        output='both')
-    
-    # ***** STATIC TRANSFORM ***** #
+    # ROBOT STATE PUBLISHER NODE:
+    node_robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        output='both',
+        parameters=[robot_description]
+    )
     # Static TF:
     static_tf = Node(
         package="tf2_ros",
@@ -124,63 +167,50 @@ def generate_launch_description():
         output="log",
         arguments=["0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "world", "base_link"],
     )
-    # Robot State Publisher:
-    node_robot_state_publisher = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        output='both',
-        parameters=[
-            robot_description,
-            {"use_sim_time": True}
-        ]
+
+    # ***** CONTROLLERS ***** #
+    # ros2_control:
+    ros2_controllers_path = os.path.join(
+        get_package_share_directory("ur3cranfield_bringup"),
+        "config",
+        "ur_controllers.yaml",
     )
-
-    # ***** ROS2_CONTROL -> LOAD CONTROLLERS ***** #
-
+    ros2_control_node = Node(
+        package="controller_manager",
+        executable="ros2_control_node",
+        parameters=[robot_description, ros2_controllers_path, tf_prefix],
+        output="both",
+    )
+    # IO and STATUS CONTROLLER:
+    io_and_status_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["io_and_status_controller", "--controller-manager", "/controller_manager"],
+    )
     # Joint STATE BROADCASTER:
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
     )
+    # Speed scaling STATE BROADCASTER:
+    speed_scaling_state_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["speed_scaling_state_broadcaster", "--controller-manager", "/controller_manager"],
+    )
     # Joint TRAJECTORY Controller:
-    joint_trajectory_controller_spawner = Node(
+    #joint_trajectory_controller_spawner = Node(
+    #    package="controller_manager",
+    #    executable="spawner",
+    #    arguments=["ur_controller", "-c", "/controller_manager"],
+    #)
+    # Joint (SCALED) TRAJECTORY Controller:
+    scaled_joint_trajectory_controller_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["ur_controller", "-c", "/controller_manager"],
+        arguments=["scaled_joint_trajectory_controller", "-c", "/controller_manager"],
     )
-    # === ROBOTIQ 2f-85 CONTROLLER === #
-    robotiq_controller_spawner_LKJ = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["robotiq_controller_LKJ", "-c", "/controller_manager"],
-    )
-    robotiq_controller_spawner_RKJ = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["robotiq_controller_RKJ", "-c", "/controller_manager"],
-    )
-    robotiq_controller_spawner_LIKJ = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["robotiq_controller_LIKJ", "-c", "/controller_manager"],
-    )
-    robotiq_controller_spawner_RIKJ = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["robotiq_controller_RIKJ", "-c", "/controller_manager"],
-    )
-    robotiq_controller_spawner_LFTJ = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["robotiq_controller_LFTJ", "-c", "/controller_manager"],
-    )
-    robotiq_controller_spawner_RFTJ = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["robotiq_controller_RFTJ", "-c", "/controller_manager"],
-    )
-
 
     # *********************** MoveIt!2 *********************** #   
     
@@ -191,7 +221,7 @@ def generate_launch_description():
 
     # *** PLANNING CONTEXT *** #
     # Robot description, SRDF:
-    robot_description_semantic_config = load_file("ur3cranfield_moveit2", "config/ur3robotiq.srdf")
+    robot_description_semantic_config = load_file("ur3cranfield_moveit2", "config/ur3_2f85.srdf")
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
 
     # Kinematics.yaml file:
@@ -211,18 +241,21 @@ def generate_launch_description():
             "default_planner_config": "PTP",
         }
     }
-    pilz_cartesian_limits_yaml = load_yaml("ur3cranfield_moveit2", "config/pilz_cartesian_limits.yaml")
+    pilz_cartesian_limits_yaml = load_yaml(
+        "ur3cranfield_moveit2", "config/pilz_cartesian_limits.yaml"
+    )
     pilz_cartesian_limits = {'robot_description_planning': pilz_cartesian_limits_yaml}
 
     # MoveIt!2 Controllers:
-    moveit_simple_controllers_yaml = load_yaml("ur3cranfield_moveit2", "config/urrobotiq_controllers.yaml")
+    moveit_simple_controllers_yaml = load_yaml("ur3cranfield_bringup", "config/moveit_controllers.yaml"  )
+
     moveit_controllers = {
         "moveit_simple_controller_manager": moveit_simple_controllers_yaml,
         "moveit_controller_manager": "moveit_simple_controller_manager/MoveItSimpleControllerManager",
     }
     trajectory_execution = {
-        "moveit_manage_controllers": True,
-        "trajectory_execution.allowed_execution_duration_scaling": 1.2,
+        "moveit_manage_controllers": False,
+        "trajectory_execution.allowed_execution_duration_scaling": 5.0,
         "trajectory_execution.allowed_goal_duration_margin": 0.5,
         "trajectory_execution.allowed_start_tolerance": 0.01,
     }
@@ -256,14 +289,13 @@ def generate_launch_description():
             moveit_controllers,
             planning_scene_monitor_parameters,
             move_group_capabilities,
-            {"use_sim_time": True},
         ],
     )
 
     # RVIZ:
     load_RVIZfile = LaunchConfiguration("rviz_file")
     rviz_base = os.path.join(get_package_share_directory("ur3cranfield_moveit2"), "config")
-    rviz_full_config = os.path.join(rviz_base, "ur3robotiq_moveit2.rviz")
+    rviz_full_config = os.path.join(rviz_base, "ur3_2f85_moveit2.rviz")
 
     rviz_node_full = Node(
         package="rviz2",
@@ -285,7 +317,6 @@ def generate_launch_description():
             moveit_controllers,
             planning_scene_monitor_parameters,
             move_group_capabilities,
-            {"use_sim_time": True},
         ],
         condition=UnlessCondition(load_RVIZfile),
     )
@@ -295,98 +326,62 @@ def generate_launch_description():
         package="ros2srrc_execution",
         executable="move",
         output="screen",
-        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"use_sim_time": True}, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "gazebo"}],
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "bringup"}],
     )
     RobMoveInterface = Node(
         name="robmove",
         package="ros2srrc_execution",
         executable="robmove",
         output="screen",
-        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"use_sim_time": True}, {"ROB_PARAM": "ur3"}],
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}],
     )
     RobPoseInterface = Node(
         name="robpose",
         package="ros2srrc_execution",
         executable="robpose",
         output="screen",
-        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"use_sim_time": True}, {"ROB_PARAM": "ur3"}],
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}],
     )
     SequenceInterface = Node(
         name="sequence",
         package="ros2srrc_execution",
         executable="sequence",
         output="screen",
-        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"use_sim_time": True}, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "gazebo"}],
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "bringup"}],
     )
 
-    return LaunchDescription(
-        [
-            # Gazebo nodes:
-            gazebo, 
-            spawn_entity,
-            # ROS2_CONTROL:
-            static_tf,
-            node_robot_state_publisher,
-            
-            # ROS2 Controllers:
-            RegisterEventHandler(
-                OnProcessExit(
-                    target_action = spawn_entity,
-                    on_exit = [
-                        joint_state_broadcaster_spawner,
-                    ]
-                )
-            ),
-            RegisterEventHandler(
-                OnProcessExit(
-                    target_action = joint_state_broadcaster_spawner,
-                    on_exit = [
-                        joint_trajectory_controller_spawner,
-                    ]
-                )
-            ),
-            RegisterEventHandler(
-                OnProcessExit(
-                    target_action = joint_trajectory_controller_spawner,
-                    on_exit = [
-                        robotiq_controller_spawner_LKJ,
-                        robotiq_controller_spawner_RKJ,
-                        robotiq_controller_spawner_LIKJ,
-                        robotiq_controller_spawner_RIKJ,
-                        robotiq_controller_spawner_LFTJ,
-                        robotiq_controller_spawner_RFTJ,
-                    ]
-                )
-            ),
+    # ***** RETURN LAUNCH DESCRIPTION ***** #
+    return LaunchDescription([
+        
+        # 1. Step: Connect to ROBOT:
+        ros2_control_node,
+        node_robot_state_publisher,
+        static_tf,
+        io_and_status_controller_spawner,
+        joint_state_broadcaster_spawner,
+        speed_scaling_state_broadcaster_spawner,
+        #joint_trajectory_controller_spawner,
+        scaled_joint_trajectory_controller_spawner,
+        
+        # 2. Step: Launch MoveIt!2:
+        RegisterEventHandler(
+            OnProcessExit(
+                target_action = scaled_joint_trajectory_controller_spawner,
+                on_exit = [
+                    rviz_arg,
+                    run_move_group_node,
 
-            RegisterEventHandler(
-                OnProcessExit(
-                    target_action = robotiq_controller_spawner_RFTJ,
-                    on_exit = [
+                    TimerAction(
+                        period=5.0,
+                        actions=[rviz_node_full],
+                    ),
 
-                        # MoveIt!2:
-                        TimerAction(
-                            period=2.0,
-                            actions=[
-                                rviz_arg,
-                                rviz_node_full,
-                                run_move_group_node
-                            ]
-                        ),
-
-                        # ROS2.0 Actions:
-                        TimerAction(
-                            period=5.0,
-                            actions=[
-                                MoveInterface,
-                                SequenceInterface,
-                                RobMoveInterface,
-                                RobPoseInterface,
-                            ]
-                        ),
-
-                    ]
-                )
+                    MoveInterface,
+                    RobMoveInterface,
+                    RobPoseInterface,
+                    SequenceInterface,
+                ]
             )
-        ]
-    )
+        ),
+    ]
+)

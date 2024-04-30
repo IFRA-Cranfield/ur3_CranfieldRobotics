@@ -101,10 +101,13 @@ def generate_launch_description():
     print("===== UR3 Robot: Cranfield Robotics =====")
     print("Robot configuration:")
     print("")
+    
     # Cell Layout:
     print("- Cell layout: Cranfield University - IA Lab stand.")
+    
     # End-Effector:
-    print("- End-effector: Robotiq 2f-85 Parallel Gripper.")
+    print("- End-effector: Robotiq Hand-E Parallel Gripper.")
+
     # Robot IP Address:
     print("- Robot IP Address: " + robot_ip)
     print("")
@@ -137,6 +140,9 @@ def generate_launch_description():
     xacro.process_doc(doc, mappings={
         "robot_ip": robot_ip, 
         "bringup": "true",
+        
+        "robotiq_2f85": "false",
+        "robotiq_hande": "true",
 
         "tf_prefix": tf_prefix,
         "script_filename": script_filename,
@@ -194,11 +200,11 @@ def generate_launch_description():
         arguments=["speed_scaling_state_broadcaster", "--controller-manager", "/controller_manager"],
     )
     # Joint TRAJECTORY Controller:
-    #joint_trajectory_controller_spawner = Node(
-    #    package="controller_manager",
-    #    executable="spawner",
-    #    arguments=["ur_controller", "-c", "/controller_manager"],
-    #)
+    joint_trajectory_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["ur_controller", "-c", "/controller_manager"],
+    )
     # Joint (SCALED) TRAJECTORY Controller:
     scaled_joint_trajectory_controller_spawner = Node(
         package="controller_manager",
@@ -215,7 +221,7 @@ def generate_launch_description():
 
     # *** PLANNING CONTEXT *** #
     # Robot description, SRDF:
-    robot_description_semantic_config = load_file("ur3cranfield_moveit2", "config/ur3robotiq.srdf")
+    robot_description_semantic_config = load_file("ur3cranfield_moveit2", "config/ur3_hande.srdf")
     robot_description_semantic = {"robot_description_semantic": robot_description_semantic_config}
 
     # Kinematics.yaml file:
@@ -289,7 +295,7 @@ def generate_launch_description():
     # RVIZ:
     load_RVIZfile = LaunchConfiguration("rviz_file")
     rviz_base = os.path.join(get_package_share_directory("ur3cranfield_moveit2"), "config")
-    rviz_full_config = os.path.join(rviz_base, "ur3_moveit2.rviz")
+    rviz_full_config = os.path.join(rviz_base, "ur3_hande_moveit2.rviz")
 
     rviz_node_full = Node(
         package="rviz2",
@@ -320,7 +326,7 @@ def generate_launch_description():
         package="ros2srrc_execution",
         executable="move",
         output="screen",
-        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "bringup"}],
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_hande"}, {"ENV_PARAM": "bringup"}],
     )
     RobMoveInterface = Node(
         name="robmove",
@@ -341,7 +347,7 @@ def generate_launch_description():
         package="ros2srrc_execution",
         executable="sequence",
         output="screen",
-        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_2f85"}, {"ENV_PARAM": "bringup"}],
+        parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_hande"}, {"ENV_PARAM": "bringup"}],
     )
 
     # ***** RETURN LAUNCH DESCRIPTION ***** #
