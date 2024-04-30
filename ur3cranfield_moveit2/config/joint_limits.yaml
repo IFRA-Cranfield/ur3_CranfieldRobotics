@@ -11,32 +11,32 @@ joint_limits:
   # UR3:
   shoulder_pan_joint:
     has_velocity_limits: true
-    max_velocity: 0.9
+    max_velocity: 1.5
     has_acceleration_limits: true
     max_acceleration: 5.0
   shoulder_lift_joint:
     has_velocity_limits: true
-    max_velocity: 0.9
+    max_velocity: 1.5
     has_acceleration_limits: true
     max_acceleration: 5.0
   elbow_joint:
     has_velocity_limits: true
-    max_velocity: 0.9
+    max_velocity: 1.5
     has_acceleration_limits: true
     max_acceleration: 5.0
   wrist_1_joint:
     has_velocity_limits: true
-    max_velocity: 1.85
+    max_velocity: 2.0
     has_acceleration_limits: true
     max_acceleration: 5.0
   wrist_2_joint:
     has_velocity_limits: true
-    max_velocity: 1.85
+    max_velocity: 2.0
     has_acceleration_limits: true
     max_acceleration: 5.0
   wrist_3_joint:
     has_velocity_limits: true
-    max_velocity: 1.85
+    max_velocity: 2.0
     has_acceleration_limits: true
     max_acceleration: 5.0
   
