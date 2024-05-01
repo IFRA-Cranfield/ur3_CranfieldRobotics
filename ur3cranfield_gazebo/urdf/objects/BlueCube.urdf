@@ -7,7 +7,7 @@
     <collision>
       <origin xyz= "0.0 0.0 0.0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/cube/irb120pe_BlueCube.dae"/>
+        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/cube/BlueCube.dae"/>
       </geometry>
       <surface>
         <contact>
@@ -19,7 +19,7 @@
     <visual>
       <origin xyz= "0.0 0.0 0.0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/cube/irb120pe_BlueCube.dae"/>
+        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/cube/BlueCube.dae"/>
       </geometry>
     </visual>
 

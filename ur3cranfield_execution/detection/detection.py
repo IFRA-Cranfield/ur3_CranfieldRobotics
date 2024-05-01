@@ -315,10 +315,10 @@ class CubeDetection():
 
         # Visualize ROI:
         '''while True:
-            cv2.imshow("IRB-120 PoseEstimation: Cube-ROI", ROI)
+            cv2.imshow("UR3 Cranfield University Cell: Cube-ROI", ROI)
             key = cv2.waitKey(1)
             if key == ord('q'):
-                cv2.destroyWindow("IRB-120 PoseEstimation: Cube-ROI")
+                cv2.destroyWindow("UR3 Cranfield University Cell: Cube-ROI")
                 break'''
 
         # Find CONTOURS:
