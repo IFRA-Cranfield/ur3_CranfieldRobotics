@@ -339,6 +339,11 @@ class CubeDetection():
             xo = xo + x
             yo = yo + y
 
+        if (angle < 10.0 and angle > -10.0):
+            angle = 0.0
+        if (angle < 100.0 and angle > 80.0):
+            angle = 0.0
+
         RESULT["angle"] = angle
         RESULT["yaw"] = -(angle * 3.1416/180.0)
         RESULT["x"] = xo/1000 - 0.569/2

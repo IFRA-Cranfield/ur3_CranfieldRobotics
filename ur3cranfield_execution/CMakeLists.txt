@@ -38,6 +38,7 @@ endif()
 install(
   DIRECTORY 
     python
+    robot
     detection
     yolov8
   DESTINATION 
@@ -52,6 +53,12 @@ install(PROGRAMS
     detection/visualize.py
     detection/coordinates.py
     detection/coordinates2Topic.py
+    detection/cubePP.py
+
+    robot/robot.py
+    robot/routines.py
+    robot/waypoints.py
+    robot/gripper_Gz.py
 
   DESTINATION lib/${PROJECT_NAME} 
 )
