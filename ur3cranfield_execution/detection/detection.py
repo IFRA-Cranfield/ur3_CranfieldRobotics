@@ -38,6 +38,8 @@ import rclpy
 from rclpy.node import Node
 # CAMERA ROS2msg:
 from sensor_msgs.msg import Image
+# COORDINATES ROS2msg:
+from ur3cranfield_data.msg import Coordinates
 # OpenCV:
 import cv2
 from cv2 import aruco
@@ -72,6 +74,13 @@ class ImgSUB(Node):
         except CvBridgeError as ERR:
             print("(cv_bridge): ERROR -> " + ERR) 
             print("")
+
+# ========================================================================================= #
+# PUBLISHER (COORDINATES):
+class CoordinatePublisher(Node):
+    def __init__(self):
+        super().__init__("ur3cranfield_CoordinatePublisher")
+        self.publisher_ = self.create_publisher(Coordinates, "CubeCoordinates", 10)
             
 # =============================================================================== #
 # CLASS -> CubeDetection:
@@ -105,6 +114,9 @@ class CubeDetection():
         # Values of the CALIBRATION in x and y (mm):
         self.w = 569
         self.h = 299
+
+        # Coordinates PUBLISHER:
+        self.PUB = CoordinatePublisher()
 
     def InitCam(self):
         
@@ -155,6 +167,15 @@ class CubeDetection():
             rclpy.shutdown()
             print("CLOSING PROGRAM...")
             exit()
+
+    def UpdateCamera(self, ENV):
+
+        if (ENV == "GAZEBO"):
+            rclpy.spin_once(self.GzCAM_SUB)
+            self.inputImg = Gz_CAM
+        else:
+            self.ret, self.inputImg = self.camera.read()
+
 
     def GetPerspectiveImg(self, ShowPerspective):
 
@@ -225,6 +246,134 @@ class CubeDetection():
                 if key == ord('q'):
                     cv2.destroyWindow("UR3 Cranfield Cell (CUBE DETECTION): Perspective Image")
                     break 
+
+    def CubeLocation(self):
+
+        print("=== DETECTION: YOLOv8 MODEL ===")
+        print("DETECTING the cube with YOLOv8 and getting its POSE...")
+        print("")
+
+        RESULT = {"x": 0.0, "y": 0.0, "yaw": 0.0, "detection": "", "success": False}
+
+        # Run YOLOv8 model once, to load it properly:
+        results = self.YOLOmodel(self.perspectiveImg)
+        names = self.YOLOmodel.names
+
+        # Run YOLOv8 detection for 1 seconds, and get RESULT:
+        t_end = time.time() + 1.0
+        Detected = False
+        while time.time() < t_end:
+
+            results = self.YOLOmodel(self.perspectiveImg)
+            boxes = results[0].boxes
+
+            ids = []
+            for box in boxes:
+                box = boxes.xyxy
+                for c in boxes.cls:
+                    ids.append(names[int(c)])
+
+            for id in ids:
+
+                if id == "sticker" or id == "cube":
+                    print("")
+                    Detected = True
+                    break
+
+            if Detected:
+                self.YOLOOutput = results[0].plot()
+                break
+
+        if not Detected:
+
+            self.YOLOOutput = self.perspectiveImg
+
+            print("")
+            print("ERROR: The YOLOv8 model could not detect any cube in the workspace.")
+            print("")
+            return(RESULT)
+
+        # AFTER DETECTION -> Get ROI (Region-of-Interest):
+        for box in boxes:
+            name = names[int(box.cls[0])]
+            if (name == "sticker" or name == "cube"): # The ROI must take the whole cube's BOUNDING BOX, not sticker's BOUNDING BOX!
+                x1, y1, x2, y2 = box.xyxy[0] 
+                break
+
+        x = int(x1)-3
+        y = int(y1)-3
+        w = int(x2)+3
+        h = int(y2)+3
+        ROI = self.perspectiveImg[y:h, x:w]
+
+        # Apply mask to IMG:
+        ROI = cv2.GaussianBlur(ROI,(3,3),0)
+        imgHSV = cv2.cvtColor(ROI, cv2.COLOR_BGR2HSV)
+        lowLimit = (0, 10, 10)
+        upLimit = (70, 255, 255)
+        mask = cv2.inRange(imgHSV, lowLimit, upLimit)
+
+        # Visualize ROI:
+        '''while True:
+            cv2.imshow("IRB-120 PoseEstimation: Cube-ROI", ROI)
+            key = cv2.waitKey(1)
+            if key == ord('q'):
+                cv2.destroyWindow("IRB-120 PoseEstimation: Cube-ROI")
+                break'''
+
+        # Find CONTOURS:
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        poly_contour = []
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            if area > 500:
+                poly_contour.append(contour)
+
+        if not poly_contour:
+            print("ERROR: No contours detected.")
+            return(RESULT)
+
+        for cnt in poly_contour:
+            rect = cv2.minAreaRect(cnt)
+            (xo, yo), (wo, ho), angle = rect
+            xo = xo + x
+            yo = yo + y
+
+        RESULT["angle"] = angle
+        RESULT["yaw"] = -(angle * 3.1416/180.0)
+        RESULT["x"] = xo/1000 - 0.569/2
+        RESULT["y"] = -yo/1000 + 0.299 + 0.095
+        RESULT["detection"] = "Cube"
+        RESULT["success"] = True
+
+        for id in ids:
+
+            if id == "white":
+                RESULT["detection"] = "WhiteCube"
+                break
+
+            if id == "black":
+                RESULT["detection"] = "BlackCube"
+                break
+
+            if id == "blue":
+                RESULT["detection"] = "BlueCube"
+                break
+
+            if id == "sticker":
+                RESULT["detection"] = "Sticker"
+
+        return(RESULT)
+    
+    def PublishCoordinates(self, TYPE, X, Y, ANGLE):
+        
+        MSG = Coordinates()
+        MSG.cubetype = TYPE
+        MSG.x = X
+        MSG.y = Y
+        MSG.angle = ANGLE
+     
+        self.PUB.publisher_.publish(MSG)
             
     def ConstantVisualization(self):
 

@@ -50,6 +50,8 @@ install(PROGRAMS
 
     detection/detection.py
     detection/visualize.py
+    detection/coordinates.py
+    detection/coordinates2Topic.py
 
   DESTINATION lib/${PROJECT_NAME} 
 )
