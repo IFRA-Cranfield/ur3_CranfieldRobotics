@@ -135,6 +135,31 @@
     <origin xyz="0.0 0.0 0.85" rpy="0.0 0.0 0.0" /> 
   </joint>
 
+  <!-- CubeTray -->
+  <link name="CubeTray">
+      <visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="100.0"/>
+        <inertia ixx="0.0002" ixy="0.0002" ixz="0.0002" iyy="0.0" iyz="0.0" izz="0.0" />
+      </inertial>
+    </link>
+    <joint name="cell-CubeTray-fixed" type="fixed">
+      <parent link="${tf_prefix}ur3_stand"/>
+      <child link="CubeTray"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </joint>
+
   <!-- ARUCO TAGS -->
   <xacro:unless value="${bringup}">
 
