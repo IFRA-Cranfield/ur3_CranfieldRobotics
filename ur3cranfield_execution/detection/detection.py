@@ -40,6 +40,8 @@ from rclpy.node import Node
 from sensor_msgs.msg import Image
 # OpenCV:
 import cv2
+from cv2 import aruco
+import numpy as np
 # ROS2 to OpenCV -> cv_bridge:
 from cv_bridge import CvBridge, CvBridgeError
 # YOLOv8:
@@ -101,8 +103,8 @@ class CubeDetection():
             self.YOLOmodel = YOLO(modelPATH + '/cubeDETECTION.pt') # Pre-trained YOLOv8n model.
 
         # Values of the CALIBRATION in x and y (mm):
-        self.w = 750
-        self.h = 400
+        self.w = 569
+        self.h = 299
 
     def InitCam(self):
         
@@ -153,6 +155,76 @@ class CubeDetection():
             rclpy.shutdown()
             print("CLOSING PROGRAM...")
             exit()
+
+    def GetPerspectiveImg(self, ShowPerspective):
+
+        if ShowPerspective:
+            print("=== DETECTION: Calibration ===")
+            print("Transforming the InputIMG into PerspectiveIMG using the ARUCO Tags...")
+            print("")
+
+        # Detection of the Aruco Markers in the input image:
+        param = cv2.aruco.DetectorParameters()
+        aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_1000)
+        detector = aruco.ArucoDetector(aruco_dict,param)
+        markerCorners, markerIds, rejectedCandidates = detector.detectMarkers(self.inputImg)
+
+        # Visualize detection of the Aruco markers:
+        outputImage = self.inputImg.copy()
+        cv2.aruco.drawDetectedMarkers(outputImage, markerCorners, markerIds)
+
+        # Test if ArUco tags are detected properly:
+        '''while True:
+            cv2.imshow("UR3 Cranfield Cell (CUBE DETECTION): ArUco Detection", outputImage)
+
+            key = cv2.waitKey(1)
+            if key == ord('q'):
+                cv2.destroyWindow("UR3 Cranfield Cell (CUBE DETECTION): ArUco Detection", self.outputImage)
+                break'''
+
+        # Calibration process:
+        src = np.zeros((4, 2), dtype=np.float32)  # Points of the corners from the input image.
+        dst = np.array([[0.0, 0.0], [self.w, 0.0], [0.0, self.h], [self.w, self.h]], dtype=np.float32)  # Points calibrated with w and h.
+        
+        poly_corner = np.zeros((4, 3), dtype=np.int32)
+
+        # Get the first corner & ID of the markers:
+        for i in range(4):
+            poly_corner[i][0] = int(markerIds[i][0])
+            poly_corner[i][1] = int(markerCorners[i][0][0][0])
+            poly_corner[i][2] = int(markerCorners[i][0][0][1])
+
+        # Arrange by ID: 
+        for i in range(3):
+            for j in range(i + 1, 4):
+                if poly_corner[i][0] > poly_corner[j][0]:
+                    for k in range(3):
+                        aux = poly_corner[i][k]
+                        poly_corner[i][k] = poly_corner[j][k]
+                        poly_corner[j][k] = aux
+
+        # Get the source vector:
+        for i in range(4):
+            src[i] = np.array([poly_corner[i][1], poly_corner[i][2]], dtype=np.float32)
+
+        # Get the transform matrix:
+        perspTransMatrix = cv2.getPerspectiveTransform(src, dst)
+
+        # Get image of the perspective:
+        self.perspectiveImg = cv2.warpPerspective(outputImage, perspTransMatrix, (int(self.w), int(self.h)))
+        
+        if ShowPerspective:
+
+            while True:
+
+                if self.perspectiveImg is not None:
+                    self.perspectiveImgSHOW = cv2.resize(self.perspectiveImg, (750, 400))
+                    cv2.imshow("UR3 Cranfield Cell (CUBE DETECTION): Perspective Image", self.perspectiveImgSHOW)
+
+                key = cv2.waitKey(1)
+                if key == ord('q'):
+                    cv2.destroyWindow("UR3 Cranfield Cell (CUBE DETECTION): Perspective Image")
+                    break 
             
     def ConstantVisualization(self):
 
@@ -182,5 +254,39 @@ class CubeDetection():
             key = cv2.waitKey(1)
             if key == ord('e'):
                 cv2.destroyWindow("UR3 Cranfield Cell (CUBE DETECTION): YOLO Output")
+                break 
+
+    def ConstantVisualization_Perspective(self):
+
+        global Gz_CAM
+        global ENVIRONMENT
+
+        while True:
+
+            if (ENVIRONMENT == "GAZEBO"):
+                # 1. SPIN /Image topic subscriber!
+                rclpy.spin_once(self.GzCAM_SUB)
+                # 2. ASSIGN IMG:
+                self.inputImg = Gz_CAM
+                # Get Perspective Image:
+                self.GetPerspectiveImg(ShowPerspective = False)
+
+            else:
+                # ASSIGN IMG:
+                self.ret, self.inputImg = self.camera.read()
+                # Get Perspective Image:
+                self.GetPerspectiveImg(ShowPerspective = False)
+
+
+            # 3. Get -> YOLOv8 MODEL RESULT:
+            if self.perspectiveImg is not None:
+                results = self.YOLOmodel(self.perspectiveImg)
+                annotated_frame = results[0].plot()
+                VISUALIZE = cv2.resize(annotated_frame, (1280, 720))
+                cv2.imshow("UR3 Cranfield Cell (CUBE DETECTION): YOLO Output (PerspectiveImg)", VISUALIZE)
+
+            key = cv2.waitKey(1)
+            if key == ord('e'):
+                cv2.destroyWindow("UR3 Cranfield Cell (CUBE DETECTION): YOLO Output (PerspectiveImg)")
                 break 
 

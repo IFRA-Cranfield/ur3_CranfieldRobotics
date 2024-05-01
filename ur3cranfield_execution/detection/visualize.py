@@ -72,7 +72,7 @@ def main(args=None):
     
     rclpy.init()
     
-    # 0. Get input argument -> ENVIRONMENT:
+    # Get input argument -> ENVIRONMENT:
     ENV = AssignArgument("environment")
     if ENV == None:
         print("")
@@ -83,16 +83,31 @@ def main(args=None):
     elif ENV != "GAZEBO" and ENV != "ROBOT":
         print("")
         print("ERROR: [environment] INPUT ARGUMENT has not been properly defined. Please try again.")
-        print('COMMAND: ros2 run ur3cranfield_execution visualize.py environment:="", OPTIONS: "GAZEBO", "ROBOT".')
+        print('COMMAND: ros2 run ur3cranfield_execution visualize.py environment:="" img:="", OPTIONS(environment): "GAZEBO", "ROBOT".')
+        print("Closing... BYE!")
+        exit()
+
+    # Get input argument -> IMAGE:
+    IMG = AssignArgument("img")
+    if IMG == None:
+        print("")
+        print("ERROR: [img] INPUT ARGUMENT has not been defined. Please try again.")
+        print('COMMAND: ros2 run ur3cranfield_execution visualize.py environment:="" img:="", OPTIONS(img): "CAMERA", "PERSPECTIVE".')
+        print("Closing... BYE!")
+        exit()
+    elif IMG != "CAMERA" and IMG != "PERSPECTIVE":
+        print("")
+        print("ERROR: [img] INPUT ARGUMENT has not been properly defined. Please try again.")
+        print('COMMAND: ros2 run ur3cranfield_execution visualize.py environment:="" img:="", OPTIONS(img): "CAMERA", "PERSPECTIVE".')
         print("Closing... BYE!")
         exit()
     
     DETECTION = CubeDetection(ENV)
-    DETECTION.ConstantVisualization()
-
-    print("")
-    print("Program execution successfully finished!")
-    print("Closing .py script... Bye!")
+    
+    if IMG == "CAMERA":
+        DETECTION.ConstantVisualization()
+    else:
+        DETECTION.ConstantVisualization_Perspective()
 
     rclpy.shutdown() 
 
