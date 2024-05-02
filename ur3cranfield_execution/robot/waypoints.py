@@ -117,7 +117,7 @@ class waypoints():
         self.RobotPoseDict["PlaceBLACK"].orientation.w = 0.0
         # White Cube:
         self.RobotPoseDict["PlaceWHITE_app"] = Pose()
-        self.RobotPoseDict["PlaceWHITE_app"].position.x = 0.259 - 0.045
+        self.RobotPoseDict["PlaceWHITE_app"].position.x = 0.259
         self.RobotPoseDict["PlaceWHITE_app"].position.y = 0.0274 - 0.045
         self.RobotPoseDict["PlaceWHITE_app"].position.z = 1.03
         self.RobotPoseDict["PlaceWHITE_app"].orientation.x = 1.0
@@ -125,7 +125,7 @@ class waypoints():
         self.RobotPoseDict["PlaceWHITE_app"].orientation.z = 0.0
         self.RobotPoseDict["PlaceWHITE_app"].orientation.w = 0.0
         self.RobotPoseDict["PlaceWHITE"] = Pose()
-        self.RobotPoseDict["PlaceWHITE"].position.x = 0.259 - 0.045
+        self.RobotPoseDict["PlaceWHITE"].position.x = 0.259
         self.RobotPoseDict["PlaceWHITE"].position.y = 0.0274 - 0.045
         self.RobotPoseDict["PlaceWHITE"].position.z = 1.00
         self.RobotPoseDict["PlaceWHITE"].orientation.x = 1.0
