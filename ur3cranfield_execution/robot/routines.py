@@ -52,8 +52,8 @@ def EEQuaternion(yaw):
     RESULT = Pose()
 
     # 1. Initial pose:
-    Ax = math.sqrt(2)/2
-    Ay = math.sqrt(2)/2
+    Ax = 1.0
+    Ay = 0.0
     Az = 0.0
     Aw = 0.0
 
@@ -126,7 +126,7 @@ class RoutineList():
         TARGET_POSE = Pose()
         TARGET_POSE.position.x = x
         TARGET_POSE.position.y = y
-        TARGET_POSE.position.z = 1.05
+        TARGET_POSE.position.z = 1.08
         TARGET_POSE.orientation = EEPose.orientation
         self.ROBOT.RobMove_EXECUTE_cstm("PTP",1.0,TARGET_POSE)
 
@@ -135,7 +135,7 @@ class RoutineList():
         TARGET_POSE = Pose()
         TARGET_POSE.position.x = x
         TARGET_POSE.position.y = y
-        TARGET_POSE.position.z = 0.99
+        TARGET_POSE.position.z = 1.02
         TARGET_POSE.orientation = EEPose.orientation
         self.ROBOT.RobMove_EXECUTE_cstm("LIN",0.1,TARGET_POSE)
 
@@ -149,7 +149,7 @@ class RoutineList():
         TARGET_POSE = Pose()
         TARGET_POSE.position.x = x
         TARGET_POSE.position.y = y
-        TARGET_POSE.position.z = 1.05
+        TARGET_POSE.position.z = 1.08
         TARGET_POSE.orientation = EEPose.orientation
         self.ROBOT.RobMove_EXECUTE_cstm("LIN",0.1,TARGET_POSE)
 

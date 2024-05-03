@@ -38,6 +38,8 @@
 from geometry_msgs.msg import Pose
 from ros2srrc_data.msg import Action
 
+import math
+
 # =============================================================================== #
 # CLASS -> waypoints:
 
@@ -56,7 +58,7 @@ class waypoints():
         self.RobotPoseDict["HomePos"].movej.joint3 = 45.0
         self.RobotPoseDict["HomePos"].movej.joint4 = -90.0
         self.RobotPoseDict["HomePos"].movej.joint5 = -90.0
-        self.RobotPoseDict["HomePos"].movej.joint6 = -90.0
+        self.RobotPoseDict["HomePos"].movej.joint6 = 0.0
 
         # ========== INTERMEDIATE ========== #
         self.RobotPoseDict["InterPos"] = Action()
@@ -67,7 +69,7 @@ class waypoints():
         self.RobotPoseDict["InterPos"].movej.joint3 = 90.0
         self.RobotPoseDict["InterPos"].movej.joint4 = -90.0
         self.RobotPoseDict["InterPos"].movej.joint5 = -90.0
-        self.RobotPoseDict["InterPos"].movej.joint6 = -90.0
+        self.RobotPoseDict["InterPos"].movej.joint6 = 0.0
 
         # ========== PRE-PLACING ========== #
         self.RobotPoseDict["PrePlace"] = Action()
@@ -78,75 +80,75 @@ class waypoints():
         self.RobotPoseDict["PrePlace"].movej.joint3 = 90.0
         self.RobotPoseDict["PrePlace"].movej.joint4 = -90.0
         self.RobotPoseDict["PrePlace"].movej.joint5 = -90.0
-        self.RobotPoseDict["PrePlace"].movej.joint6 = -90.0
+        self.RobotPoseDict["PrePlace"].movej.joint6 = 0.0
 
         # ========== PLACE CUBE ========== #
         # Blue Cube:
         self.RobotPoseDict["PlaceBLUE_app"] = Pose()
         self.RobotPoseDict["PlaceBLUE_app"].position.x = 0.259 - 0.045
         self.RobotPoseDict["PlaceBLUE_app"].position.y = 0.0274
-        self.RobotPoseDict["PlaceBLUE_app"].position.z = 1.03
-        self.RobotPoseDict["PlaceBLUE_app"].orientation.x = 1.0
-        self.RobotPoseDict["PlaceBLUE_app"].orientation.y = 0.0
+        self.RobotPoseDict["PlaceBLUE_app"].position.z = 1.06
+        self.RobotPoseDict["PlaceBLUE_app"].orientation.x = -math.sqrt(2)/2
+        self.RobotPoseDict["PlaceBLUE_app"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceBLUE_app"].orientation.z = 0.0
         self.RobotPoseDict["PlaceBLUE_app"].orientation.w = 0.0
         self.RobotPoseDict["PlaceBLUE"] = Pose()
         self.RobotPoseDict["PlaceBLUE"].position.x = 0.259 - 0.045
         self.RobotPoseDict["PlaceBLUE"].position.y = 0.0274
-        self.RobotPoseDict["PlaceBLUE"].position.z = 1.00
-        self.RobotPoseDict["PlaceBLUE"].orientation.x = 1.0
-        self.RobotPoseDict["PlaceBLUE"].orientation.y = 0.0
+        self.RobotPoseDict["PlaceBLUE"].position.z = 1.03
+        self.RobotPoseDict["PlaceBLUE"].orientation.x = -math.sqrt(2)/2
+        self.RobotPoseDict["PlaceBLUE"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceBLUE"].orientation.z = 0.0
         self.RobotPoseDict["PlaceBLUE"].orientation.w = 0.0
         # Black Cube:
         self.RobotPoseDict["PlaceBLACK_app"] = Pose()
         self.RobotPoseDict["PlaceBLACK_app"].position.x = 0.259 - 0.045
         self.RobotPoseDict["PlaceBLACK_app"].position.y = 0.0274 - 0.045
-        self.RobotPoseDict["PlaceBLACK_app"].position.z = 1.03
-        self.RobotPoseDict["PlaceBLACK_app"].orientation.x = 1.0
-        self.RobotPoseDict["PlaceBLACK_app"].orientation.y = 0.0
+        self.RobotPoseDict["PlaceBLACK_app"].position.z = 1.06
+        self.RobotPoseDict["PlaceBLACK_app"].orientation.x = -math.sqrt(2)/2
+        self.RobotPoseDict["PlaceBLACK_app"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceBLACK_app"].orientation.z = 0.0
         self.RobotPoseDict["PlaceBLACK_app"].orientation.w = 0.0
         self.RobotPoseDict["PlaceBLACK"] = Pose()
         self.RobotPoseDict["PlaceBLACK"].position.x = 0.259 - 0.045
         self.RobotPoseDict["PlaceBLACK"].position.y = 0.0274 - 0.045
-        self.RobotPoseDict["PlaceBLACK"].position.z = 1.00
-        self.RobotPoseDict["PlaceBLACK"].orientation.x = 1.0
-        self.RobotPoseDict["PlaceBLACK"].orientation.y = 0.0
+        self.RobotPoseDict["PlaceBLACK"].position.z = 1.03
+        self.RobotPoseDict["PlaceBLACK"].orientation.x = -math.sqrt(2)/2
+        self.RobotPoseDict["PlaceBLACK"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceBLACK"].orientation.z = 0.0
         self.RobotPoseDict["PlaceBLACK"].orientation.w = 0.0
         # White Cube:
         self.RobotPoseDict["PlaceWHITE_app"] = Pose()
         self.RobotPoseDict["PlaceWHITE_app"].position.x = 0.259
         self.RobotPoseDict["PlaceWHITE_app"].position.y = 0.0274 - 0.045
-        self.RobotPoseDict["PlaceWHITE_app"].position.z = 1.03
-        self.RobotPoseDict["PlaceWHITE_app"].orientation.x = 1.0
-        self.RobotPoseDict["PlaceWHITE_app"].orientation.y = 0.0
+        self.RobotPoseDict["PlaceWHITE_app"].position.z = 1.06
+        self.RobotPoseDict["PlaceWHITE_app"].orientation.x = -math.sqrt(2)/2
+        self.RobotPoseDict["PlaceWHITE_app"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceWHITE_app"].orientation.z = 0.0
         self.RobotPoseDict["PlaceWHITE_app"].orientation.w = 0.0
         self.RobotPoseDict["PlaceWHITE"] = Pose()
         self.RobotPoseDict["PlaceWHITE"].position.x = 0.259
         self.RobotPoseDict["PlaceWHITE"].position.y = 0.0274 - 0.045
-        self.RobotPoseDict["PlaceWHITE"].position.z = 1.00
-        self.RobotPoseDict["PlaceWHITE"].orientation.x = 1.0
-        self.RobotPoseDict["PlaceWHITE"].orientation.y = 0.0
+        self.RobotPoseDict["PlaceWHITE"].position.z = 1.03
+        self.RobotPoseDict["PlaceWHITE"].orientation.x = -math.sqrt(2)/2
+        self.RobotPoseDict["PlaceWHITE"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceWHITE"].orientation.z = 0.0
         self.RobotPoseDict["PlaceWHITE"].orientation.w = 0.0
         # No-sticker Cube:
         self.RobotPoseDict["PlaceCUBE_app"] = Pose()
         self.RobotPoseDict["PlaceCUBE_app"].position.x = 0.259
         self.RobotPoseDict["PlaceCUBE_app"].position.y = 0.0274
-        self.RobotPoseDict["PlaceCUBE_app"].position.z = 1.03
-        self.RobotPoseDict["PlaceCUBE_app"].orientation.x = 1.0
-        self.RobotPoseDict["PlaceCUBE_app"].orientation.y = 0.0
+        self.RobotPoseDict["PlaceCUBE_app"].position.z = 1.06
+        self.RobotPoseDict["PlaceCUBE_app"].orientation.x = -math.sqrt(2)/2
+        self.RobotPoseDict["PlaceCUBE_app"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceCUBE_app"].orientation.z = 0.0
         self.RobotPoseDict["PlaceCUBE_app"].orientation.w = 0.0
         self.RobotPoseDict["PlaceCUBE"] = Pose()
         self.RobotPoseDict["PlaceCUBE"].position.x = 0.259
         self.RobotPoseDict["PlaceCUBE"].position.y = 0.0274
-        self.RobotPoseDict["PlaceCUBE"].position.z = 1.00
-        self.RobotPoseDict["PlaceCUBE"].orientation.x = 1.0
-        self.RobotPoseDict["PlaceCUBE"].orientation.y = 0.0
+        self.RobotPoseDict["PlaceCUBE"].position.z = 1.03
+        self.RobotPoseDict["PlaceCUBE"].orientation.x = -math.sqrt(2)/2
+        self.RobotPoseDict["PlaceCUBE"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceCUBE"].orientation.z = 0.0
         self.RobotPoseDict["PlaceCUBE"].orientation.w = 0.0
 
