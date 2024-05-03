@@ -95,7 +95,7 @@ class waypoints():
         self.RobotPoseDict["PlaceBLUE"] = Pose()
         self.RobotPoseDict["PlaceBLUE"].position.x = 0.259 - 0.045
         self.RobotPoseDict["PlaceBLUE"].position.y = 0.0274
-        self.RobotPoseDict["PlaceBLUE"].position.z = 1.03
+        self.RobotPoseDict["PlaceBLUE"].position.z = 1.04
         self.RobotPoseDict["PlaceBLUE"].orientation.x = -math.sqrt(2)/2
         self.RobotPoseDict["PlaceBLUE"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceBLUE"].orientation.z = 0.0
@@ -112,7 +112,7 @@ class waypoints():
         self.RobotPoseDict["PlaceBLACK"] = Pose()
         self.RobotPoseDict["PlaceBLACK"].position.x = 0.259 - 0.045
         self.RobotPoseDict["PlaceBLACK"].position.y = 0.0274 - 0.045
-        self.RobotPoseDict["PlaceBLACK"].position.z = 1.03
+        self.RobotPoseDict["PlaceBLACK"].position.z = 1.04
         self.RobotPoseDict["PlaceBLACK"].orientation.x = -math.sqrt(2)/2
         self.RobotPoseDict["PlaceBLACK"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceBLACK"].orientation.z = 0.0
@@ -129,7 +129,7 @@ class waypoints():
         self.RobotPoseDict["PlaceWHITE"] = Pose()
         self.RobotPoseDict["PlaceWHITE"].position.x = 0.259
         self.RobotPoseDict["PlaceWHITE"].position.y = 0.0274 - 0.045
-        self.RobotPoseDict["PlaceWHITE"].position.z = 1.03
+        self.RobotPoseDict["PlaceWHITE"].position.z = 1.04
         self.RobotPoseDict["PlaceWHITE"].orientation.x = -math.sqrt(2)/2
         self.RobotPoseDict["PlaceWHITE"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceWHITE"].orientation.z = 0.0
@@ -146,7 +146,7 @@ class waypoints():
         self.RobotPoseDict["PlaceCUBE"] = Pose()
         self.RobotPoseDict["PlaceCUBE"].position.x = 0.259
         self.RobotPoseDict["PlaceCUBE"].position.y = 0.0274
-        self.RobotPoseDict["PlaceCUBE"].position.z = 1.03
+        self.RobotPoseDict["PlaceCUBE"].position.z = 1.04
         self.RobotPoseDict["PlaceCUBE"].orientation.x = -math.sqrt(2)/2
         self.RobotPoseDict["PlaceCUBE"].orientation.y = math.sqrt(2)/2
         self.RobotPoseDict["PlaceCUBE"].orientation.z = 0.0

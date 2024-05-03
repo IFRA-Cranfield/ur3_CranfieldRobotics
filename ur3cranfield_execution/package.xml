@@ -19,6 +19,7 @@
   <build_depend>ros2srrc_execution</build_depend>
 
   <build_depend>ur3cranfield_data</build_depend>
+  <build_depend>ros2_robotiqgripper</build_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

@@ -255,7 +255,7 @@ def generate_launch_description():
     }
     trajectory_execution = {
         "moveit_manage_controllers": False,
-        "trajectory_execution.allowed_execution_duration_scaling": 5.0,
+        "trajectory_execution.allowed_execution_duration_scaling": 10.0,
         "trajectory_execution.allowed_goal_duration_margin": 0.5,
         "trajectory_execution.allowed_start_tolerance": 0.01,
     }
@@ -350,10 +350,18 @@ def generate_launch_description():
         parameters=[robot_description, robot_description_semantic, kinematics_yaml, {"ROB_PARAM": "ur3"}, {"EE_PARAM": "robotiq_hande"}, {"ENV_PARAM": "bringup"}],
     )
 
+    RobotiQHandE_Interface = Node(
+        name="robotiq_server",
+        package="ros2_robotiqgripper",
+        executable="server.py",
+        output="screen",
+        parameters=[{"IPAddress": robot_ip}],
+    )
+
     # ***** RETURN LAUNCH DESCRIPTION ***** #
     return LaunchDescription([
         
-        # 1. Step: Connect to ROBOT:
+        # 1. Step: Connect to ROBOT:ipadd
         ros2_control_node,
         node_robot_state_publisher,
         static_tf,
@@ -380,6 +388,7 @@ def generate_launch_description():
                     RobMoveInterface,
                     RobPoseInterface,
                     SequenceInterface,
+                    RobotiQHandE_Interface,
                 ]
             )
         ),

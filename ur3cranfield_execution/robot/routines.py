@@ -43,7 +43,7 @@ from geometry_msgs.msg import Pose
 # Robot and Gripper classes:
 from robot import RBT
 from gripper_Gz import GzGripper
-#from gripper import RobotiqHandE
+from gripper import RobotiqHandE
 
 # ================================================================================= #
 # Function to compute the Robot Pose (EE Vector in quaternions, getting the cube angle as the input):     
@@ -94,9 +94,16 @@ class RoutineList():
         # GRIPPER:
         if (ENVIRONMENT == "GAZEBO"):
             self.GRIPPER = GzGripper()
-        '''else: 
-            self.GRIPPER = RobotiqHandE()'''    
+        else: 
+            self.GRIPPER = RobotiqHandE()   
 
+    def HomePos_andOPEN(self):
+        print("(Robot Movement -> /Move): HomePos")
+        self.ROBOT.Move_EXECUTE("HomePos")
+        time.sleep(0.2)
+        self.GRIPPER.OPEN()
+        time.sleep(0.2)
+    
     def HomePos(self):
         print("(Robot Movement -> /Move): HomePos")
         self.ROBOT.Move_EXECUTE("HomePos")
@@ -210,7 +217,7 @@ class RoutineList():
             print("(Robot Movement -> /RobMove): PlaceBLUE_app")
             self.ROBOT.RobMove_EXECUTE("PlaceBLUE_app", "LIN", 0.1)
 
-        elif CUBE == "Cube":
+        elif CUBE == "Cube" or CUBE == "Sticker":
             
             print("(Robot Movement -> /RobMove): PlaceCUBE_app")
             self.ROBOT.RobMove_EXECUTE("PlaceCUBE_app", "PTP", 1.0)

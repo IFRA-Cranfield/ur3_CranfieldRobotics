@@ -76,12 +76,6 @@ def main(args=None):
     
     rclpy.init()
 
-    # Initialise -> ROUTINES class:
-    ROUTINE = RoutineList("GAZEBO")
-
-    # ROBOT -> HOME POSITION:
-    ROUTINE.HomePos()
-    
     # Get input argument -> ENVIRONMENT:
     ENV = AssignArgument("environment")
     if ENV == None:
@@ -96,6 +90,12 @@ def main(args=None):
         print('COMMAND: ros2 run ur3cranfield_execution visualize.py environment:="", OPTIONS: "GAZEBO", "ROBOT".')
         print("Closing... BYE!")
         exit()
+
+    # Initialise -> ROUTINES class:
+    ROUTINE = RoutineList(ENV)
+
+    # ROBOT -> HOME POSITION:
+    ROUTINE.HomePos_andOPEN()
     
     DETECTION = CubeDetection(ENV)
     DETECTION.GetPerspectiveImg(ShowPerspective=True)

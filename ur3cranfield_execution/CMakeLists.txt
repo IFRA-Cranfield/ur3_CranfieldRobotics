@@ -59,6 +59,7 @@ install(PROGRAMS
     robot/routines.py
     robot/waypoints.py
     robot/gripper_Gz.py
+    robot/gripper.py
 
   DESTINATION lib/${PROJECT_NAME} 
 )
