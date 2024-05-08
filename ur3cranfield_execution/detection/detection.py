@@ -253,7 +253,7 @@ class CubeDetection():
         print("DETECTING the cube with YOLOv8 and getting its POSE...")
         print("")
 
-        RESULT = {"x": 0.0, "y": 0.0, "yaw": 0.0, "detection": "", "success": False}
+        RESULT = {"x": 0.0, "y": 0.0, "yaw": 0.0, "angle": 0.0, "detection": "", "success": False}
 
         # Run YOLOv8 model once, to load it properly:
         results = self.YOLOmodel(self.perspectiveImg)
@@ -309,11 +309,11 @@ class CubeDetection():
         # Apply mask to IMG:
         ROI = cv2.GaussianBlur(ROI,(3,3),0)
         imgHSV = cv2.cvtColor(ROI, cv2.COLOR_BGR2HSV)
-        lowLimit = (0, 10, 10)
-        upLimit = (70, 255, 255)
+        lowLimit = (0, 50, 50)
+        upLimit = (15, 255, 255)
         mask = cv2.inRange(imgHSV, lowLimit, upLimit)
 
-        # Visualize ROI:
+        # Visualize ROI (without contours):
         '''while True:
             cv2.imshow("UR3 Cranfield University Cell: Cube-ROI", ROI)
             key = cv2.waitKey(1)
@@ -328,6 +328,15 @@ class CubeDetection():
             area = cv2.contourArea(contour)
             if area > 500:
                 poly_contour.append(contour)
+
+        # Visualize ROI (with contours):
+        '''cv2.drawContours(ROI, poly_contour, -1, (0, 255, 0), 1)
+        while True:
+            cv2.imshow("UR3 Cranfield University Cell: Cube-ROI", ROI)
+            key = cv2.waitKey(1)
+            if key == ord('q'):
+                cv2.destroyWindow("UR3 Cranfield University Cell: Cube-ROI")
+                break'''
 
         if not poly_contour:
             print("ERROR: No contours detected.")
