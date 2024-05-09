@@ -48,6 +48,7 @@ install(PROGRAMS
     
     python/RobotState.py
     python/SpawnObject.py
+    python/sequence.py
 
     detection/detection.py
     detection/visualize.py
