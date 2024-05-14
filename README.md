@@ -135,6 +135,7 @@ Centre for Robotics and Assembly:
 Welcome to the ur3_CranfieldRobotics repository! This repository contains a comprehensive solution for simulating and controlling the UR3 Robot using ROS 2 Humble. The ROS 2 packages provided here enable seamless execution in both simulated and real environments. Leveraging ROS 2 Humble on an Ubuntu 22.04 PC, this repository furnishes all necessary source code, ensuring compatibility and ease of deployment. 
 
 __Robotiq Grippers__
+
 Our ROS 2 packages for the UR3 Robot include comprehensive support for two popular Robotiq grippers: the Robotiq HandE gripper and the Robotiq 2f-85 gripper. These grippers are seamlessly integrated into our simulation and control packages, allowing users to easily attach and control them alongside the UR3 Robot. With dedicated drivers and accompanying documentation, users can efficiently configure and utilize the Robotiq grippers for a wide range of robotic applications, enhancing the versatility and capabilities of the UR3 system.
 
 At IFRA-Cranfield, we have developed a simple ROS 2 Driver to control the Robotiq grippers through TCP-IP socket connection. For more information, please visit the [IFRA-Cranfield/ros2_robotiqgripper](https://github.com/IFRA-Cranfield/ros2_RobotiqGripper) repository.
