@@ -116,8 +116,8 @@ The pre-defined programs are saved inside the /programs folder as .txt files. Ev
 * For MoveRP ---> {'action': 'MoveRP', 'value': {'yaw': 0.0, 'pitch': 0.0, 'roll': 0.0, 'x': 0.0, 'y': 0.0, 'z': 0.0}, 'speed': 1.0}
 * For MoveG (Gazebo) ---> {'action': 'MoveG', 'value': {'value': 0.0}, 'speed': 1.0}
 * For MoveG (UR3 Robot): 
-    * To Open Gripper ---> {'action': 'UR3 - HandE: GripperOpen'}
-    * To Close Gripper ---> {'action': 'UR3 - HandE: GripperClose'}
+    * To Open Gripper ---> {'action': 'UR HandE - GripperOpen'}
+    * To Close Gripper ---> {'action': 'UR HandE - GripperClose'}
 * For the object manipulation (IFRA_LinkAttacher Gazebo Plugin):
     * To attach object to end-effector ---> {'action': 'Attach', 'value': {'model1': '---', 'link1': '---', 'model2': '---', 'link2': '---'}}
     * To detach object from end-effector ---> {'action': 'Attach', 'value': {'model1': '---', 'link1': '---', 'model2': '---', 'link2': '---'}}
