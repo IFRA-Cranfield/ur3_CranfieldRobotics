@@ -149,6 +149,26 @@ ros2 run ur3cranfield_execution SpawnObject.py --package "{}" --urdf "{}.urdf" -
 # NOTE: It is assumed that the .urdf file of the object to be spawned is stored in the /urdf folder of the selected package.
 ```
 
+## Execute -> Static Program: UR3 Demo (simple robot movements)
+
+In Gazebo Simulation environment:
+```sh
+# 1. Launch the Gazebo+MoveIt!2 Simulation Environment:
+ros2 launch ur3cranfield_moveit2 moveit2_hande.launch.py
+
+# 2. Execute sequence:
+ros2 run ur3cranfield_execution sequence.py --ros-args -p PROGRAM_FILENAME:="ur3_demo" -p ROBOT_MODEL:="ur3" -p EE_MODEL:="robotiq_hande" -p GzBr_ENV:="gazebo"
+```
+
+For the Real UR3 Robot:
+```sh
+# 1. Launch the ROS 2-UR3 Bringup Environment:
+ros2 launch ur3cranfield_bringup bringup_hande.launch.py ip_address:=0.0.0.0
+
+# 2. Execute sequence:
+ros2 run ur3cranfield_execution sequence.py --ros-args -p PROGRAM_FILENAME:="ur3_demo" -p ROBOT_MODEL:="ur3" -p EE_MODEL:="robotiq_hande" -p GzBr_ENV:="bringup"
+```
+
 ## Execute -> Static Program: Pick-and-Place of 4 cubes (UR3 + RobotiQ HandE)
 
 In Gazebo Simulation environment:
