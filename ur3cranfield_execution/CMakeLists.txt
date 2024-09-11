@@ -37,31 +37,9 @@ endif()
 
 install(
   DIRECTORY 
-    python
-    robot
-    detection
-    yolov8
+    programs
   DESTINATION 
     share/${PROJECT_NAME}
 )
-install(PROGRAMS
-    
-    python/RobotState.py
-    python/SpawnObject.py
-    python/sequence.py
 
-    detection/detection.py
-    detection/visualize.py
-    detection/coordinates.py
-    detection/coordinates2Topic.py
-    detection/cubePP.py
-
-    robot/robot.py
-    robot/routines.py
-    robot/waypoints.py
-    robot/gripper_Gz.py
-    robot/gripper.py
-
-  DESTINATION lib/${PROJECT_NAME} 
-)
 ament_package()

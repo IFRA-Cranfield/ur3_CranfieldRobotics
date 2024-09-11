@@ -35,9 +35,8 @@ endif()
 install(
   DIRECTORY 
     config
-    launch
-    urdf 
     meshes
+    urdf 
     worlds
   DESTINATION 
     share/${PROJECT_NAME}

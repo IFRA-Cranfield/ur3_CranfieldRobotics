@@ -1,0 +1,520 @@
+Specifications:
+  Robot: "ur3"
+  EndEffector: None
+  EELink: None
+  Objects: None
+
+Sequence: 
+  
+  - Step: 1
+    Name: "[UR3-Demo]: MoveJ - HomePosition."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -135.0
+      joint3: 45.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 2
+    Name: "[UR3-Demo]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 3
+    Name: "[UR3-Demo]: MoveL - -0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: -0.1
+
+  - Step: 4
+    Name: "[UR3-Demo]: MoveL - +0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 5
+    Name: "[UR3-Demo]: MoveL - -0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 6
+    Name: "[UR3-Demo]: MoveL - +0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.15
+      z: 0.0
+  
+  - Step: 7
+    Name: "[UR3-Demo]: MoveL - -0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: -0.15
+      z: 0.0
+
+  - Step: 8
+    Name: "[UR3-Demo]: MoveL - 0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: 0.1
+
+  - Step: 9
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: 45.0
+
+  - Step: 10
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 -90.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: -90.0
+
+  - Step: 11
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: +45.0
+
+  - Step: 12
+    Name: "[UR3-Demo]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 13
+    Name: "[UR3-Demo]: MoveL - -0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: -0.1
+
+  - Step: 14
+    Name: "[UR3-Demo]: MoveL - +0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 15
+    Name: "[UR3-Demo]: MoveL - -0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 16
+    Name: "[UR3-Demo]: MoveL - +0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.15
+      z: 0.0
+  
+  - Step: 17
+    Name: "[UR3-Demo]: MoveL - -0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: -0.15
+      z: 0.0
+
+  - Step: 18
+    Name: "[UR3-Demo]: MoveL - 0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: 0.1
+
+  - Step: 19
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: 45.0
+
+  - Step: 20
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 -90.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: -90.0
+
+  - Step: 21
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: +45.0
+
+  - Step: 22
+    Name: "[UR3-Demo]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 23
+    Name: "[UR3-Demo]: MoveL - -0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: -0.1
+
+  - Step: 24
+    Name: "[UR3-Demo]: MoveL - +0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 25
+    Name: "[UR3-Demo]: MoveL - -0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 26
+    Name: "[UR3-Demo]: MoveL - +0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.15
+      z: 0.0
+  
+  - Step: 27
+    Name: "[UR3-Demo]: MoveL - -0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: -0.15
+      z: 0.0
+
+  - Step: 28
+    Name: "[UR3-Demo]: MoveL - 0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: 0.1
+
+  - Step: 29
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: 45.0
+
+  - Step: 30
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 -90.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: -90.0
+
+  - Step: 31
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: +45.0
+
+  - Step: 32
+    Name: "[UR3-Demo]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 33
+    Name: "[UR3-Demo]: MoveL - -0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: -0.1
+
+  - Step: 34
+    Name: "[UR3-Demo]: MoveL - +0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 35
+    Name: "[UR3-Demo]: MoveL - -0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 36
+    Name: "[UR3-Demo]: MoveL - +0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.15
+      z: 0.0
+  
+  - Step: 37
+    Name: "[UR3-Demo]: MoveL - -0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: -0.15
+      z: 0.0
+
+  - Step: 38
+    Name: "[UR3-Demo]: MoveL - 0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: 0.1
+
+  - Step: 39
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: 45.0
+
+  - Step: 40
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 -90.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: -90.0
+
+  - Step: 41
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: +45.0
+
+  - Step: 42
+    Name: "[UR3-Demo]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 43
+    Name: "[UR3-Demo]: MoveL - -0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: -0.1
+
+  - Step: 44
+    Name: "[UR3-Demo]: MoveL - +0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 45
+    Name: "[UR3-Demo]: MoveL - -0.1m in x axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.1
+      y: 0.0
+      z: 0.0
+
+  - Step: 46
+    Name: "[UR3-Demo]: MoveL - +0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.15
+      z: 0.0
+  
+  - Step: 47
+    Name: "[UR3-Demo]: MoveL - -0.15m in y axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: -0.15
+      z: 0.0
+
+  - Step: 48
+    Name: "[UR3-Demo]: MoveL - 0.1m in z axis."
+    Type: "MoveL"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.0
+      z: 0.1
+
+  - Step: 49
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: 45.0
+
+  - Step: 50
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 -90.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: -90.0
+
+  - Step: 51
+    Name: "[UR3-Demo]: MoveR - Rotate Joint1 +45.0 degrees."
+    Type: "MoveR"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint: "joint1"
+      value: +45.0

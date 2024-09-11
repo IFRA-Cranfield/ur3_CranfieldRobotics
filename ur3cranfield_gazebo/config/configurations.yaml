@@ -1,0 +1,15 @@
+# UR3 - Cranfield University:
+
+Configurations:
+
+  - ID: "ur3cranfield_1"
+    Name: "UR3 Robot alone on Cranfield University (IA Lab) Stand."
+    urdf: "ur3cranfield_1.urdf.xacro"
+    rob: "ur3"
+    ee: "none"
+
+  - ID: "ur3cranfield_2"
+    Name: "ABB IRB-120 Robot + Robotiq HandE Gripper on Cranfield University (IA Lab) Stand: CubeTray Pick&Place use-case."
+    urdf: "ur3cranfield_2.urdf.xacro"
+    rob: "ur3"
+    ee: "robotiq_hande"

@@ -1,0 +1,527 @@
+Specifications:
+  Robot: "ur3"
+  EndEffector: "RobotiqHandE/UR"
+  EELink: "EE_robotiq_hande"
+  Objects: ["RedCube","GreenCube"]
+
+Sequence: 
+  
+  - Step: 1
+    Name: "[UR3-CubeTrayPP]: MoveJ - HomePosition."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -135.0
+      joint3: 45.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 2
+    Name: "[UR3-CubeTrayPP]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 3
+    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach."
+    Type: "RobMove"
+    Movement: "PTP"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 4
+    Name: "[UR3-CubeTrayPP]: RedCube - Pick."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.878
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 5
+    Name: "[UR3-CubeTrayPP]: Close Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "CLOSE"
+    Value: 20.0
+    Delay: 0.25
+
+  - Step: 6
+    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 7
+    Name: "[UR3-CubeTrayPP]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+
+  - Step: 10
+    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (1)."
+    Type: "RobMove"
+    Movement: "PTP"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: -0.213
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 11
+    Name: "[UR3-CubeTrayPP]: RedCube - Place (1)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.213
+      y: 0.363
+      z: 0.88
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 12
+    Name: "[UR3-CubeTrayPP]: Open Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "OPEN"
+    Delay: 0.25
+
+  - Step: 13
+    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach (1)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.213
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 14
+    Name: "[UR3-CubeTrayPP]: RedCube - Pick (1)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.213
+      y: 0.363
+      z: 0.878
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 15
+    Name: "[UR3-CubeTrayPP]: Close Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "CLOSE"
+    Value: 20.0
+    Delay: 0.25
+
+  - Step: 16
+    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube (1)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.213
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 17
+    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (2)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: -0.213
+      y: 0.318
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 18
+    Name: "[UR3-CubeTrayPP]: RedCube - Place (1)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.213
+      y: 0.318
+      z: 0.88
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 19
+    Name: "[UR3-CubeTrayPP]: Open Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "OPEN"
+    Delay: 0.25
+
+  - Step: 20
+    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach (2)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.213
+      y: 0.318
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 21
+    Name: "[UR3-CubeTrayPP]: RedCube - Pick (2)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.213
+      y: 0.318
+      z: 0.878
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 22
+    Name: "[UR3-CubeTrayPP]: Close Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "CLOSE"
+    Value: 20.0
+    Delay: 0.25
+
+  - Step: 23
+    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube (2)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.213
+      y: 0.318
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 24
+    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (3)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: -0.258
+      y: 0.318
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 25
+    Name: "[UR3-CubeTrayPP]: RedCube - Place (3)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.258
+      y: 0.318
+      z: 0.88
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 26
+    Name: "[UR3-CubeTrayPP]: Open Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "OPEN"
+    Delay: 0.25
+
+  - Step: 27
+    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach (3)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.258
+      y: 0.318
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 28
+    Name: "[UR3-CubeTrayPP]: RedCube - Pick (3)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.258
+      y: 0.318
+      z: 0.878
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 29
+    Name: "[UR3-CubeTrayPP]: Close Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "CLOSE"
+    Value: 20.0
+    Delay: 0.25
+
+  - Step: 30
+    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube (3)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.258
+      y: 0.318
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 31
+    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (4)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: -0.258
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 32
+    Name: "[UR3-CubeTrayPP]: RedCube - Place (4)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.258
+      y: 0.363
+      z: 0.88
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 33
+    Name: "[UR3-CubeTrayPP]: Open Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "OPEN"
+    Delay: 0.25
+
+  - Step: 34
+    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach (4)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.258
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 35
+    Name: "[UR3-CubeTrayPP]: RedCube - Pick (4)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.258
+      y: 0.363
+      z: 0.878
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 36
+    Name: "[UR3-CubeTrayPP]: Close Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "CLOSE"
+    Value: 20.0
+    Delay: 0.25
+
+  - Step: 37
+    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube (4)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.258
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 41
+    Name: "[UR3-CubeTrayPP]: MoveJ - RedCube, Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+
+  - Step: 42
+    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (FINAL)."
+    Type: "RobMove"
+    Movement: "PTP"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 43
+    Name: "[UR3-CubeTrayPP]: RedCube - Place (FINAL)."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.885
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 44
+    Name: "[UR3-CubeTrayPP]: Open Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "OPEN"
+    Delay: 0.25
+
+  - Step: 45
+    Name: "[UR3-CubeTrayPP]: RedCube - RobotUp."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.925
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 46
+    Name: "[UR3-CubeTrayPP]: MoveJ - RedCube, FINISH."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -135.0
+      joint3: 45.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
