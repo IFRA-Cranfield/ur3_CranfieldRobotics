@@ -1,0 +1,161 @@
+Specifications:
+  Robot: "ur3"
+  EndEffector: "RobotiqHandE/UR"
+  EELink: "EE_robotiq_hande"
+  Objects: ["RedCube","GreenCube","WhiteCube","BlackCube","BlueCube"]
+
+Sequence: 
+  
+  - Step: 1
+    Name: "[UR3-CubePP]: MoveJ - HomePosition."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -135.0
+      joint3: 45.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 2
+    Name: "[UR3-CubePP]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+  
+  - Step: 3
+    Name: "[UR3-CubePP]: Cube - PickApproach."
+    Type: "RobMove"
+    Movement: "PTP"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.92
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 4
+    Name: "[UR3-CubePP]: Cube - Pick."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.873
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 5
+    Name: "[UR3-CubePP]: Close Gripper."
+    Type: "RobotiqHandE/UR"
+    Action: "CLOSE"
+    Delay: 0.25
+
+  - Step: 6
+    Name: "[UR3-CubePP]: Cube - LiftCube."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: 0.257
+      y: 0.363
+      z: 0.92
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 7
+    Name: "[UR3-CubePP]: Cube - PlaceApproach."
+    Type: "RobMove"
+    Movement: "PTP"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: -0.213
+      y: 0.363
+      z: 0.92
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 8
+    Name: "[UR3-CubePP]: Cube - Place."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.25
+    Input:
+      x: -0.213
+      y: 0.363
+      z: 0.875
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 9
+    Name: "[UR3-CubePP]: Open Gripper."
+    Type: "ParallelGripper"
+    Action: "OPEN"
+    Delay: 0.25
+
+  - Step: 10
+    Name: "[UR3-CubePP]: Cube - PlaceApproach."
+    Type: "RobMove"
+    Movement: "LIN"
+    Speed: 0.1
+    Delay: 0.0
+    Input:
+      x: -0.213
+      y: 0.363
+      z: 0.92
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0
+
+  - Step: 11
+    Name: "[UR3-CubePP]: MoveJ - Orientate."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -90.0
+      joint3: 90.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0
+
+  - Step: 12
+    Name: "[UR3-CubePP]: MoveJ - HomePosition."
+    Type: "MoveJ"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      joint1: 90.0
+      joint2: -135.0
+      joint3: 45.0
+      joint4: -90.0
+      joint5: -90.0
+      joint6: 0.0

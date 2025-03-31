@@ -2,7 +2,7 @@ Specifications:
   Robot: "ur3"
   EndEffector: "RobotiqHandE/UR"
   EELink: "EE_robotiq_hande"
-  Objects: ["RedCube","GreenCube"]
+  Objects: ["RedCube","GreenCube","WhiteCube","BlackCube","BlueCube"]
 
 Sequence: 
   
