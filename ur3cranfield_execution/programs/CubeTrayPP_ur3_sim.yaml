@@ -33,7 +33,7 @@ Sequence:
       joint6: 0.0
   
   - Step: 3
-    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach."
+    Name: "[UR3-CubeTrayPP]: Cube - PickApproach."
     Type: "RobMove"
     Movement: "PTP"
     Speed: 1.0
@@ -48,7 +48,7 @@ Sequence:
       qw: 0.0
 
   - Step: 4
-    Name: "[UR3-CubeTrayPP]: RedCube - Pick."
+    Name: "[UR3-CubeTrayPP]: Cube - Pick."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -70,7 +70,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 6
-    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube."
+    Name: "[UR3-CubeTrayPP]: Cube - LiftCube."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -116,7 +116,7 @@ Sequence:
       value: -45.0
 
   - Step: 10
-    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (1)."
+    Name: "[UR3-CubeTrayPP]: Cube - PlaceApproach (1)."
     Type: "RobMove"
     Movement: "PTP"
     Speed: 1.0
@@ -131,7 +131,7 @@ Sequence:
       qw: 0.0
 
   - Step: 11
-    Name: "[UR3-CubeTrayPP]: RedCube - Place (1)."
+    Name: "[UR3-CubeTrayPP]: Cube - Place (1)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -152,7 +152,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 13
-    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach (1)."
+    Name: "[UR3-CubeTrayPP]: Cube - PickApproach (1)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -167,7 +167,7 @@ Sequence:
       qw: 0.0
 
   - Step: 14
-    Name: "[UR3-CubeTrayPP]: RedCube - Pick (1)."
+    Name: "[UR3-CubeTrayPP]: Cube - Pick (1)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -189,7 +189,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 16
-    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube (1)."
+    Name: "[UR3-CubeTrayPP]: Cube - LiftCube (1)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -204,7 +204,7 @@ Sequence:
       qw: 0.0
 
   - Step: 17
-    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (2)."
+    Name: "[UR3-CubeTrayPP]: Cube - PlaceApproach (2)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 1.0
@@ -219,7 +219,7 @@ Sequence:
       qw: 0.0
 
   - Step: 18
-    Name: "[UR3-CubeTrayPP]: RedCube - Place (1)."
+    Name: "[UR3-CubeTrayPP]: Cube - Place (1)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -240,7 +240,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 20
-    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach (2)."
+    Name: "[UR3-CubeTrayPP]: Cube - PickApproach (2)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -255,7 +255,7 @@ Sequence:
       qw: 0.0
 
   - Step: 21
-    Name: "[UR3-CubeTrayPP]: RedCube - Pick (2)."
+    Name: "[UR3-CubeTrayPP]: Cube - Pick (2)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -277,7 +277,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 23
-    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube (2)."
+    Name: "[UR3-CubeTrayPP]: Cube - LiftCube (2)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -292,7 +292,7 @@ Sequence:
       qw: 0.0
 
   - Step: 24
-    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (3)."
+    Name: "[UR3-CubeTrayPP]: Cube - PlaceApproach (3)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 1.0
@@ -307,7 +307,7 @@ Sequence:
       qw: 0.0
 
   - Step: 25
-    Name: "[UR3-CubeTrayPP]: RedCube - Place (3)."
+    Name: "[UR3-CubeTrayPP]: Cube - Place (3)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -328,7 +328,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 27
-    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach (3)."
+    Name: "[UR3-CubeTrayPP]: Cube - PickApproach (3)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -343,7 +343,7 @@ Sequence:
       qw: 0.0
 
   - Step: 28
-    Name: "[UR3-CubeTrayPP]: RedCube - Pick (3)."
+    Name: "[UR3-CubeTrayPP]: Cube - Pick (3)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -365,7 +365,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 30
-    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube (3)."
+    Name: "[UR3-CubeTrayPP]: Cube - LiftCube (3)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -380,7 +380,7 @@ Sequence:
       qw: 0.0
 
   - Step: 31
-    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (4)."
+    Name: "[UR3-CubeTrayPP]: Cube - PlaceApproach (4)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 1.0
@@ -395,7 +395,7 @@ Sequence:
       qw: 0.0
 
   - Step: 32
-    Name: "[UR3-CubeTrayPP]: RedCube - Place (4)."
+    Name: "[UR3-CubeTrayPP]: Cube - Place (4)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -416,7 +416,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 34
-    Name: "[UR3-CubeTrayPP]: RedCube - PickApproach (4)."
+    Name: "[UR3-CubeTrayPP]: Cube - PickApproach (4)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -431,7 +431,7 @@ Sequence:
       qw: 0.0
 
   - Step: 35
-    Name: "[UR3-CubeTrayPP]: RedCube - Pick (4)."
+    Name: "[UR3-CubeTrayPP]: Cube - Pick (4)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -453,7 +453,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 37
-    Name: "[UR3-CubeTrayPP]: RedCube - LiftCube (4)."
+    Name: "[UR3-CubeTrayPP]: Cube - LiftCube (4)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -512,7 +512,7 @@ Sequence:
       joint6: 0.0
 
   - Step: 42
-    Name: "[UR3-CubeTrayPP]: RedCube - PlaceApproach (FINAL)."
+    Name: "[UR3-CubeTrayPP]: Cube - PlaceApproach (FINAL)."
     Type: "RobMove"
     Movement: "PTP"
     Speed: 1.0
@@ -527,7 +527,7 @@ Sequence:
       qw: 0.0
 
   - Step: 43
-    Name: "[UR3-CubeTrayPP]: RedCube - Place (FINAL)."
+    Name: "[UR3-CubeTrayPP]: Cube - Place (FINAL)."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1
@@ -548,7 +548,7 @@ Sequence:
     Delay: 0.25
 
   - Step: 45
-    Name: "[UR3-CubeTrayPP]: RedCube - RobotUp."
+    Name: "[UR3-CubeTrayPP]: Cube - RobotUp."
     Type: "RobMove"
     Movement: "LIN"
     Speed: 0.1

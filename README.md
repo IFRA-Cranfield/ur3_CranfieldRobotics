@@ -108,7 +108,7 @@ Centre for Robotics and Assembly:
 
 ### ur3_CranfieldRobotics Repository
 
-TBD.
+The UR3_CranfieldRobotics repository contains a set of ROS 2 packages developed for the simulation and control of the UR3 robotic arm used at the Intelligent Automation Lab, Cranfield University. It provides a complete environment for operating the UR3 in both simulation and real-world settings, including multiple use cases that demonstrate task execution. The repository also includes structured documentation to guide users through setup, control, and task execution processes, making it a valuable resource for research, teaching, and experimentation in robotics and intelligent automation.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

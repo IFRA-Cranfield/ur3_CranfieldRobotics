@@ -85,6 +85,21 @@ Sequence:
       qw: 0.0
 
   - Step: 7
+    Name: "[UR3-CubePP(sim)]: Intermediate Pose."
+    Type: "RobMove"
+    Movement: "PTP"
+    Speed: 1.0
+    Delay: 0.0
+    Input:
+      x: 0.0
+      y: 0.363
+      z: 0.92
+      qx: 0.0
+      qy: 1.0
+      qz: 0.0
+      qw: 0.0    
+
+  - Step: 8
     Name: "[UR3-CubePP(sim)]: Cube - PlaceApproach."
     Type: "RobMove"
     Movement: "PTP"
@@ -99,7 +114,7 @@ Sequence:
       qz: 0.0
       qw: 0.0
 
-  - Step: 8
+  - Step: 9
     Name: "[UR3-CubePP(sim)]: Cube - Place."
     Type: "RobMove"
     Movement: "LIN"
@@ -114,13 +129,13 @@ Sequence:
       qz: 0.0
       qw: 0.0
 
-  - Step: 9
+  - Step: 10
     Name: "[UR3-CubePP(sim)]: Open Gripper."
     Type: "ParallelGripper"
     Action: "OPEN"
     Delay: 0.25
 
-  - Step: 10
+  - Step: 11
     Name: "[UR3-CubePP(sim)]: Cube - PlaceApproach."
     Type: "RobMove"
     Movement: "LIN"
@@ -135,7 +150,7 @@ Sequence:
       qz: 0.0
       qw: 0.0
 
-  - Step: 11
+  - Step: 12
     Name: "[UR3-CubePP(sim)]: MoveJ - Orientate."
     Type: "MoveJ"
     Speed: 1.0
@@ -148,7 +163,7 @@ Sequence:
       joint5: -90.0
       joint6: 0.0
 
-  - Step: 12
+  - Step: 13
     Name: "[UR3-CubePP(sim)]: MoveJ - HomePosition."
     Type: "MoveJ"
     Speed: 1.0
