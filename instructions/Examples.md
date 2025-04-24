@@ -64,11 +64,11 @@ Once the environment has been launched, there are few operations that can be don
     ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield_execution program:=ur3_demo
     ```
 
-- Spawn objects into the GzSim Environment: The CAD and URDF files of the objects that are manipulated in our UR3-Cranfield Robot's use-cases are stored in the ur3cranfield_gazebo package. The objects can be spawned to the Simulation Environment using this command:
+- Spawn objects into the GzSim Environment: The CAD and URDF files of the objects that are manipulated in our UR3-Cranfield Robot's use-cases are stored in the ur3cranfield_gazebo package. The objects can be spawned to the Simulation Environment using this command (more info [here](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble/instructions/RobotOperation.md#extra-spawn-object-to-a-gazebo-environment)):
 
     ```sh
     # Generic command:
-    ros2 launch ros2srrc_launch simulation.launch.py package:=ur3cranfield config:=ur3cranfield_1
+    ros2 run ros2srrc_execution SpawnObject.py --package "{}" --urdf "{}.urdf" --name "{}" --x {} --y {} --z {}
 
     # Command to spawn the WHITE CUBE on top of the table:
     ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield_gazebo" --urdf "WhiteCube.urdf" --name "WhiteCube" --x 0.0 --y 0.3 --z 1.0
@@ -143,6 +143,6 @@ ros2 launch ros2srrc_launch bringup_ur.launch.py package:=ur3cranfield config:=u
 # 2. Place any cube inside the bottom-left slot of the left-tray on top of the UR3 Table.
 
 # 3. Execute the Cube Pick&Place Robot Program:
-ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield_execution program:=CubePP_ur3_sim # For the simple CubePP task.
-ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield_execution program:=CubeTrayPP_ur3_sim # For the CubeTrayPP demo.
+ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield_execution program:=CubePP_ur3 # For the simple CubePP task.
+ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield_execution program:=CubeTrayPP_ur3 # For the CubeTrayPP demo.
 ```
