@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 4.4.1 commit date:2025-04-14, commit time:14:20, hash:d8845b3bb572</authoring_tool>
+    </contributor>
+    <created>2025-04-28T12:32:58</created>
+    <modified>2025-04-28T12:32:58</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="BASE_014-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">1 1 1 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="aruco103_004-effect">
+      <profile_COMMON>
+        <newparam sid="aruco103_jpg-surface">
+          <surface type="2D">
+            <init_from>aruco103_jpg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="aruco103_jpg-sampler">
+          <sampler2D>
+            <source>aruco103_jpg-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="aruco103_jpg-sampler" texcoord="shape0_019-mesh-map-0"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="BASE_001-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">1 1 1 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="aruco101_001-effect">
+      <profile_COMMON>
+        <newparam sid="aruco101_jpg-surface">
+          <surface type="2D">
+            <init_from>aruco101_jpg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="aruco101_jpg-sampler">
+          <sampler2D>
+            <source>aruco101_jpg-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="aruco101_jpg-sampler" texcoord="shape0_002-mesh-map-0"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="BASE_013-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">1 1 1 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="aruco102_002-effect">
+      <profile_COMMON>
+        <newparam sid="aruco102_jpg-surface">
+          <surface type="2D">
+            <init_from>aruco102_jpg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="aruco102_jpg-sampler">
+          <sampler2D>
+            <source>aruco102_jpg-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="aruco102_jpg-sampler" texcoord="shape0_018-mesh-map-0"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="BASE_011-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">1 1 1 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="aruco100_003-effect">
+      <profile_COMMON>
+        <newparam sid="aruco100_jpg-surface">
+          <surface type="2D">
+            <init_from>aruco100_jpg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="aruco100_jpg-sampler">
+          <sampler2D>
+            <source>aruco100_jpg-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="aruco100_jpg-sampler" texcoord="shape0_014-mesh-map-0"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.5</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="aruco100_jpg" name="aruco100_jpg">
+      <init_from>aruco100.jpg</init_from>
+    </image>
+    <image id="aruco101_jpg" name="aruco101_jpg">
+      <init_from>aruco101.jpg</init_from>
+    </image>
+    <image id="aruco102_jpg" name="aruco102_jpg">
+      <init_from>aruco102.jpg</init_from>
+    </image>
+    <image id="aruco103_jpg" name="aruco103_jpg">
+      <init_from>aruco103.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="BASE_014-material" name="BASE.014">
+      <instance_effect url="#BASE_014-effect"/>
+    </material>
+    <material id="aruco103_004-material" name="aruco103.004">
+      <instance_effect url="#aruco103_004-effect"/>
+    </material>
+    <material id="BASE_001-material" name="BASE.001">
+      <instance_effect url="#BASE_001-effect"/>
+    </material>
+    <material id="aruco101_001-material" name="aruco101.001">
+      <instance_effect url="#aruco101_001-effect"/>
+    </material>
+    <material id="BASE_013-material" name="BASE.013">
+      <instance_effect url="#BASE_013-effect"/>
+    </material>
+    <material id="aruco102_002-material" name="aruco102.002">
+      <instance_effect url="#aruco102_002-effect"/>
+    </material>
+    <material id="BASE_011-material" name="BASE.011">
+      <instance_effect url="#BASE_011-effect"/>
+    </material>
+    <material id="aruco100_003-material" name="aruco100.003">
+      <instance_effect url="#aruco100_003-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="shape0_019-mesh" name="shape0.019">
+      <mesh>
+        <source id="shape0_019-mesh-positions">
+          <float_array id="shape0_019-mesh-positions-array" count="36">25 2.000002 25 30 2.000002 30 25 2.000002 -25 30 2.000002 -30 -25 2.000002 -25 -30 2.000002 -30 -25 2.000002 25 -30 2.000002 30 30 2.26494e-6 30 -30 2.26494e-6 30 30 2.26494e-6 -30 -30 2.26494e-6 -30</float_array>
+          <technique_common>
+            <accessor source="#shape0_019-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="shape0_019-mesh-normals">
+          <float_array id="shape0_019-mesh-normals-array" count="24">0 1 0 0 1 0 0 1 0 0 0 1 1 0 0 0 0 -1 -1 0 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#shape0_019-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="shape0_019-mesh-map-0">
+          <float_array id="shape0_019-mesh-map-0-array" count="120">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 0 1 1 0 1</float_array>
+          <technique_common>
+            <accessor source="#shape0_019-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="shape0_019-mesh-vertices">
+          <input semantic="POSITION" source="#shape0_019-mesh-positions"/>
+        </vertices>
+        <triangles material="BASE_014-material" count="18">
+          <input semantic="VERTEX" source="#shape0_019-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#shape0_019-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#shape0_019-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 0 1 2 0 2 2 0 3 1 0 4 3 0 5 2 1 6 3 1 7 4 1 8 4 0 9 3 0 10 5 0 11 4 0 12 5 0 13 6 0 14 6 0 15 5 0 16 7 0 17 6 2 18 7 2 19 0 2 20 0 0 21 7 0 22 1 0 23 1 3 24 7 3 25 8 3 26 8 3 27 7 3 28 9 3 29 3 4 30 1 4 31 10 4 32 10 4 33 1 4 34 8 4 35 5 5 36 3 5 37 11 5 38 11 5 39 3 5 40 10 5 41 7 6 42 5 6 43 9 6 44 9 6 45 5 6 46 11 6 47 11 7 48 10 7 49 9 7 50 9 7 51 10 7 52 8 7 53</p>
+        </triangles>
+        <triangles material="aruco103_004-material" count="2">
+          <input semantic="VERTEX" source="#shape0_019-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#shape0_019-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#shape0_019-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 54 2 0 55 6 0 56 6 0 57 2 0 58 4 0 59</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="shape0_002-mesh" name="shape0.002">
+      <mesh>
+        <source id="shape0_002-mesh-positions">
+          <float_array id="shape0_002-mesh-positions-array" count="36">25 2.000002 25 30 2.000002 30 25 2.000002 -25 30 2.000002 -30 -25 2.000002 -25 -30 2.000002 -30 -25 2.000002 25 -30 2.000002 30 30 2.26494e-6 30 -30 2.26494e-6 30 30 2.26494e-6 -30 -30 2.26494e-6 -30</float_array>
+          <technique_common>
+            <accessor source="#shape0_002-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="shape0_002-mesh-normals">
+          <float_array id="shape0_002-mesh-normals-array" count="24">0 1 0 0 1 0 0 1 0 0 0 1 1 0 0 0 0 -1 -1 0 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#shape0_002-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="shape0_002-mesh-map-0">
+          <float_array id="shape0_002-mesh-map-0-array" count="120">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 0 1 1 0 1</float_array>
+          <technique_common>
+            <accessor source="#shape0_002-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="shape0_002-mesh-vertices">
+          <input semantic="POSITION" source="#shape0_002-mesh-positions"/>
+        </vertices>
+        <triangles material="BASE_001-material" count="18">
+          <input semantic="VERTEX" source="#shape0_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#shape0_002-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#shape0_002-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 0 1 2 0 2 2 0 3 1 0 4 3 0 5 2 1 6 3 1 7 4 1 8 4 0 9 3 0 10 5 0 11 4 0 12 5 0 13 6 0 14 6 0 15 5 0 16 7 0 17 6 2 18 7 2 19 0 2 20 0 0 21 7 0 22 1 0 23 1 3 24 7 3 25 8 3 26 8 3 27 7 3 28 9 3 29 3 4 30 1 4 31 10 4 32 10 4 33 1 4 34 8 4 35 5 5 36 3 5 37 11 5 38 11 5 39 3 5 40 10 5 41 7 6 42 5 6 43 9 6 44 9 6 45 5 6 46 11 6 47 11 7 48 10 7 49 9 7 50 9 7 51 10 7 52 8 7 53</p>
+        </triangles>
+        <triangles material="aruco101_001-material" count="2">
+          <input semantic="VERTEX" source="#shape0_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#shape0_002-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#shape0_002-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 54 2 0 55 6 0 56 6 0 57 2 0 58 4 0 59</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="shape0_018-mesh" name="shape0.018">
+      <mesh>
+        <source id="shape0_018-mesh-positions">
+          <float_array id="shape0_018-mesh-positions-array" count="36">25 2.000002 25 30 2.000002 30 25 2.000002 -25 30 2.000002 -30 -25 2.000002 -25 -30 2.000002 -30 -25 2.000002 25 -30 2.000002 30 30 2.26494e-6 30 -30 2.26494e-6 30 30 2.26494e-6 -30 -30 2.26494e-6 -30</float_array>
+          <technique_common>
+            <accessor source="#shape0_018-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="shape0_018-mesh-normals">
+          <float_array id="shape0_018-mesh-normals-array" count="24">0 1 0 0 1 0 0 1 0 0 0 1 1 0 0 0 0 -1 -1 0 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#shape0_018-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="shape0_018-mesh-map-0">
+          <float_array id="shape0_018-mesh-map-0-array" count="120">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 7.07296e-4 1 0.9992928 0 7.07209e-4 0 7.07209e-4 1 0.9992928 0 0.9992927</float_array>
+          <technique_common>
+            <accessor source="#shape0_018-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="shape0_018-mesh-vertices">
+          <input semantic="POSITION" source="#shape0_018-mesh-positions"/>
+        </vertices>
+        <triangles material="BASE_013-material" count="18">
+          <input semantic="VERTEX" source="#shape0_018-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#shape0_018-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#shape0_018-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 0 1 2 0 2 2 0 3 1 0 4 3 0 5 2 1 6 3 1 7 4 1 8 4 0 9 3 0 10 5 0 11 4 0 12 5 0 13 6 0 14 6 0 15 5 0 16 7 0 17 6 2 18 7 2 19 0 2 20 0 0 21 7 0 22 1 0 23 1 3 24 7 3 25 8 3 26 8 3 27 7 3 28 9 3 29 3 4 30 1 4 31 10 4 32 10 4 33 1 4 34 8 4 35 5 5 36 3 5 37 11 5 38 11 5 39 3 5 40 10 5 41 7 6 42 5 6 43 9 6 44 9 6 45 5 6 46 11 6 47 11 7 48 10 7 49 9 7 50 9 7 51 10 7 52 8 7 53</p>
+        </triangles>
+        <triangles material="aruco102_002-material" count="2">
+          <input semantic="VERTEX" source="#shape0_018-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#shape0_018-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#shape0_018-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 54 2 0 55 6 0 56 6 0 57 2 0 58 4 0 59</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="shape0_014-mesh" name="shape0.014">
+      <mesh>
+        <source id="shape0_014-mesh-positions">
+          <float_array id="shape0_014-mesh-positions-array" count="36">25 2.000002 25 30 2.000002 30 25 2.000002 -25 30 2.000002 -30 -25 2.000002 -25 -30 2.000002 -30 -25 2.000002 25 -30 2.000002 30 30 2.26494e-6 30 -30 2.26494e-6 30 30 2.26494e-6 -30 -30 2.26494e-6 -30</float_array>
+          <technique_common>
+            <accessor source="#shape0_014-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="shape0_014-mesh-normals">
+          <float_array id="shape0_014-mesh-normals-array" count="24">0 1 0 0 1 0 0 1 0 0 0 1 1 0 0 0 0 -1 -1 0 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#shape0_014-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="shape0_014-mesh-map-0">
+          <float_array id="shape0_014-mesh-map-0-array" count="120">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7.08298e-4 0 0.9964648 0 7.08223e-4 1 7.08223e-4 1 0.9964648 0 0.9964647 1</float_array>
+          <technique_common>
+            <accessor source="#shape0_014-mesh-map-0-array" count="60" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="shape0_014-mesh-vertices">
+          <input semantic="POSITION" source="#shape0_014-mesh-positions"/>
+        </vertices>
+        <triangles material="BASE_011-material" count="18">
+          <input semantic="VERTEX" source="#shape0_014-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#shape0_014-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#shape0_014-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 0 1 2 0 2 2 0 3 1 0 4 3 0 5 2 1 6 3 1 7 4 1 8 4 0 9 3 0 10 5 0 11 4 0 12 5 0 13 6 0 14 6 0 15 5 0 16 7 0 17 6 2 18 7 2 19 0 2 20 0 0 21 7 0 22 1 0 23 1 3 24 7 3 25 8 3 26 8 3 27 7 3 28 9 3 29 3 4 30 1 4 31 10 4 32 10 4 33 1 4 34 8 4 35 5 5 36 3 5 37 11 5 38 11 5 39 3 5 40 10 5 41 7 6 42 5 6 43 9 6 44 9 6 45 5 6 46 11 6 47 11 7 48 10 7 49 9 7 50 9 7 51 10 7 52 8 7 53</p>
+        </triangles>
+        <triangles material="aruco100_003-material" count="2">
+          <input semantic="VERTEX" source="#shape0_014-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#shape0_014-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#shape0_014-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 54 2 0 55 6 0 56 6 0 57 2 0 58 4 0 59</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="node_004" name="node.004" type="NODE">
+        <matrix sid="transform">-0.002 0 -3.01992e-10 0.225 -3.01992e-10 -1.50996e-10 0.002 0.015 0 0.002 1.50996e-10 0.844 0 0 0 1</matrix>
+        <instance_geometry url="#shape0_019-mesh" name="node.004">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="BASE_014-material" target="#BASE_014-material">
+                <bind_vertex_input semantic="shape0_019-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="aruco103_004-material" target="#aruco103_004-material">
+                <bind_vertex_input semantic="shape0_019-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="node_003" name="node.003" type="NODE">
+        <matrix sid="transform">1.50996e-10 1.50996e-10 -0.002 0.225 -0.002 1.19209e-10 -1.50996e-10 0.33 1.19209e-10 0.002 1.50996e-10 0.844 0 0 0 1</matrix>
+        <instance_geometry url="#shape0_002-mesh" name="node.003">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="BASE_001-material" target="#BASE_001-material">
+                <bind_vertex_input semantic="shape0_002-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="aruco101_001-material" target="#aruco101_001-material">
+                <bind_vertex_input semantic="shape0_002-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="node_002" name="node.002" type="NODE">
+        <matrix sid="transform">1.50996e-10 -1.50996e-10 0.002 -0.225 0.002 1.19209e-10 -1.50996e-10 0.015 -1.19209e-10 0.002 1.50996e-10 0.844 0 0 0 1</matrix>
+        <instance_geometry url="#shape0_018-mesh" name="node.002">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="BASE_013-material" target="#BASE_013-material">
+                <bind_vertex_input semantic="shape0_018-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="aruco102_002-material" target="#aruco102_002-material">
+                <bind_vertex_input semantic="shape0_018-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="node_001" name="node.001" type="NODE">
+        <matrix sid="transform">1.50996e-10 1.50996e-10 -0.002 -0.225 -0.002 1.19209e-10 -1.50996e-10 0.33 1.19209e-10 0.002 1.50996e-10 0.844 0 0 0 1</matrix>
+        <instance_geometry url="#shape0_014-mesh" name="node.001">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="BASE_011-material" target="#BASE_011-material">
+                <bind_vertex_input semantic="shape0_014-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="aruco100_003-material" target="#aruco100_003-material">
+                <bind_vertex_input semantic="shape0_014-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

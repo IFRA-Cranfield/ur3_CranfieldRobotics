@@ -13,3 +13,9 @@ Configurations:
     urdf: "ur3cranfield_2.urdf.xacro"
     rob: "ur3"
     ee: "robotiq_hande"
+
+  - ID: "ur3cranfield_3"
+    Name: "UR3 Robot + Robotiq HandE Gripper on Cranfield University (IA Lab) Stand: Cube Pose Estimation use-case."
+    urdf: "ur3cranfield_3.urdf.xacro"
+    rob: "ur3"
+    ee: "robotiq_hande"
