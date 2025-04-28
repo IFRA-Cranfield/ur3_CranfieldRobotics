@@ -146,3 +146,122 @@ ros2 launch ros2srrc_launch bringup_ur.launch.py package:=ur3cranfield config:=u
 ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield_execution program:=CubePP_ur3 # For the simple CubePP task.
 ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield_execution program:=CubeTrayPP_ur3 # For the CubeTrayPP demo.
 ```
+
+### Object Pose Estimation using YOLO and OpenCV
+
+The ur3cranfield_ope ROS 2 package performs real-time object pose estimation within the robot's workspace using a combination of YOLO and OpenCV. 
+
+- A trained YOLO model detects colored cubes placed in the workspace, providing their pixel coordinates from the camera feed. 
+
+- OpenCV techniques are then applied to convert these pixel coordinates into position coordinates relative to the camera. To align these coordinates with the robot's frame of reference, a camera-to-robot transformation is performed using an ArUco tag grid. 
+
+- Finally, the estimated object poses are live published to a dedicated ROS 2 Topic, allowing seamless communication and integration with the robot's control system.
+
+__Coloured Cube Pose Estimation: Gazebo Simulation__
+
+Follow these steps to replicate the coloured cube pose estimation and pick & place task in simulation:
+
+1. Launch the Gazebo Simulation Environment + MoveIt!2 Framework for the task:
+
+    ```sh
+    ros2 launch ros2srrc_launch moveit2.launch.py package:=ur3cranfield config:=ur3cranfield_3
+    ```
+
+2. Run the Cube Pose Estimation ROS 2 node:
+
+    ```sh
+    # Execute the PositionEstimation.py script:
+    ros2 run ur3cranfield_ope PositionEstimation.py environment:=gazebo model:=ColouredCubes_ur3 visualize:=true
+
+    # This script has the following input parameters:
+    #   - environment: gazebo/robot -> To select between the simulation or real camera.
+    #   - model -> To select the trained YOLO model, located in ur3cranfield_ope/yolo/models folder.
+    #   - visualize: True/False -> To show the YOLO prediction output in the screen.
+
+    # Please note that, for the PositionEstimation node to work properly, the ArUco grid must be completely visible!
+    # For the UR3-Cranfield robot, this is done by moving the robot to this JointPose:
+    ros2 action send_goal -f /Move ros2srrc_data/action/Move "{action: 'MoveJ', movej: {joint1: 180.00, joint2: -90.00, joint3: 90.00, joint4: -90.00, joint5: -90.00, joint6: 0.00}, speed: 1.0}"
+    ```
+
+3. Spawn any cube to the robot workspace:
+
+    ```sh
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield_gazebo" --urdf "BlueCube.urdf" --name "BlueCube" --x 0.0 --y 0.3 --z 1.0
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield_gazebo" --urdf "GreenCube.urdf" --name "GreenCube" --x 0.0 --y 0.3 --z 1.0
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield_gazebo" --urdf "RedCube.urdf" --name "RedCube" --x 0.0 --y 0.3 --z 1.0
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield_gazebo" --urdf "WhiteCube.urdf" --name "WhiteCube" --x 0.0 --y 0.3 --z 1.0
+
+    # The ColouredCubes.pt detection models have been trained to detect blue, green, red and white cubes.
+    # Feel free to manually move the cubes around in the simulation environment, the PositionEstimation node will detect them!
+
+    # Once the cubes have been spawned, you will be able to monitor their estimated position using:
+    ros2 topic list
+    ros2 topic echo /BlueCube/ObjectPoseEstimation
+    ros2 topic echo /GreenCube/ObjectPoseEstimation
+    ros2 topic echo /RedCube/ObjectPoseEstimation
+    ros2 topic echo /WhiteCube/ObjectPoseEstimation
+    ```
+
+4. Run the Cube Pick & Place program:
+
+    ```sh
+    # Execute the PositionEstimation.py script:
+    ros2 run ur3cranfield_ope CubePP.py environment:=gazebo cube:=BlueCube
+
+    # This script has the following input parameters:
+    #   - environment: gazebo/robot -> To select between the simulation or real camera.
+    #   - cube: RedCube/WhiteCube/GreenCube/BlueCube -> To select the cube to be picked.
+    ```
+
+__Coloured Cube Pose Estimation: UR3 Real Robot__
+
+Follow these steps to replicate the coloured cube pose estimation and pick & place task in the real UR3 robot:
+
+1. Launch the Robot Bringup Environment + MoveIt!2 Framework for the task:
+
+    ```sh
+    ros2 launch ros2srrc_launch bringup_abb.launch.py package:=ur3cranfield config:=ur3cranfield_3 robot_ip:=192.168.125.1
+    ```
+
+2. Run the Cube Pose Estimation ROS 2 node:
+
+    ```sh
+    # Execute the PositionEstimation.py script:
+    ros2 run ur3cranfield_ope PositionEstimation.py environment:=robot model:=ColouredCubes_ur3 visualize:=true
+
+    # This script has the following input parameters:
+    #   - environment: gazebo/robot -> To select between the simulation or real camera.
+    #   - model -> To select the trained YOLO model, located in ur3cranfield_ope/yolo/models folder.
+    #   - visualize: True/False -> To show the YOLO prediction output in the screen.
+
+    # Please note that, for the PositionEstimation node to work properly, the ArUco grid must be completely visible!
+    # For the UR3-Cranfield robot, this is done by moving the robot to this JointPose:
+    ros2 action send_goal -f /Move ros2srrc_data/action/Move "{action: 'MoveJ', movej: {joint1: 180.00, joint2: -90.00, joint3: 90.00, joint4: -90.00, joint5: -90.00, joint6: 0.00}, speed: 1.0}"
+    ```
+
+3. Spawn any cube to the robot workspace:
+
+    ```sh
+    # Manually locate the coloured cubes on top of the robot workspace.
+
+    # The ColouredCubes.pt detection models have been trained to detect blue, green, red and white cubes.
+    # Feel free to manually move the cubes around in the simulation environment, the PositionEstimation node will detect them!
+
+    # Once the cubes have been spawned, you will be able to monitor their estimated position using:
+    ros2 topic list
+    ros2 topic echo /BlueCube/ObjectPoseEstimation
+    ros2 topic echo /GreenCube/ObjectPoseEstimation
+    ros2 topic echo /RedCube/ObjectPoseEstimation
+    ros2 topic echo /WhiteCube/ObjectPoseEstimation
+    ```
+
+4. Run the Cube Pick & Place program:
+
+    ```sh
+    # Execute the PositionEstimation.py script:
+    ros2 run ur3cranfield_ope CubePP.py environment:=robot cube:=BlueCube
+
+    # This script has the following input parameters:
+    #   - environment: gazebo/robot -> To select between the simulation or real camera.
+    #   - cube: RedCube/WhiteCube/GreenCube/BlueCube -> To select the cube to be picked.
+    ```

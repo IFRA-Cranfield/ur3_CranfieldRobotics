@@ -18,3 +18,13 @@ git clone https://github.com/IFRA-Cranfield/ur3_CranfieldRobotics
 cd ~/dev_ws
 colcon build
 ```   
+
+__Install OpenCV and YOLO for Object Pose Estimation Task__
+
+```sh
+# Install OpenCV:
+pip install opencv-contrib-python
+
+# Install YOLO:
+pip install ultralytics
+```
