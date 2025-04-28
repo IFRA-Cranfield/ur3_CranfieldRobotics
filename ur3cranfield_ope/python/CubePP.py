@@ -212,6 +212,7 @@ def main(args=None):
         print(str(CP))
     else:
         print("ERROR! The cube could not be detected.")
+        close()
     print("")
 
     # =========== Pick and place task =========== #
