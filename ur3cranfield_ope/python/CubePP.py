@@ -66,7 +66,7 @@ sys.path.append(PATH_robot)
 from robot import RBT
 # END EFFECTOR CLASSES (Gazebo):
 sys.path.append(PATH_endeffector)
-from schunk_abb import SchunkGRIPPER
+from robotiq_ur import RobotiqGRIPPER
 # END EFFECTOR CLASSES (Gazebo):
 sys.path.append(PATH_endeffector_gz)
 from parallelGripper import parallelGR
@@ -168,7 +168,7 @@ def main(args=None):
     if ENVIRONMENT == "gazebo":
         ENDEFFECTOR = parallelGR(["RedCube", "BlueCube", "WhiteCube", "GreenCube"], "ur3", "EE_robotiq_hande")
     else:
-        ENDEFFECTOR = SchunkGRIPPER()
+        ENDEFFECTOR = RobotiqGRIPPER()
 
     # OBJECT POSE SUBSCRIBER:
     OBJPOSE = CubePose(CUBEname)

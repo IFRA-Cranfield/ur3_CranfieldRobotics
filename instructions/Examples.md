@@ -220,7 +220,7 @@ Follow these steps to replicate the coloured cube pose estimation and pick & pla
 1. Launch the Robot Bringup Environment + MoveIt!2 Framework for the task:
 
     ```sh
-    ros2 launch ros2srrc_launch bringup_abb.launch.py package:=ur3cranfield config:=ur3cranfield_3 robot_ip:=192.168.125.1
+    ros2 launch ros2srrc_launch bringup_ur.launch.py package:=ur3cranfield config:=ur3cranfield_3 robot_ip:=192.168.1.10
     ```
 
 2. Run the Cube Pose Estimation ROS 2 node:
