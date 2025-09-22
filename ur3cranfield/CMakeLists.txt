@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ur3cranfield_execution)
+project(ur3cranfield)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -32,12 +32,12 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# =========================================================== #
-# REQUIRED TO execute python scripts:
-
 install(
   DIRECTORY 
+    config
+    meshes
     programs
+    urdf 
   DESTINATION 
     share/${PROJECT_NAME}
 )

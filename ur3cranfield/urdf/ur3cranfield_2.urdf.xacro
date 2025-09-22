@@ -100,13 +100,13 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/ur3stand_complete.dae" scale="1 1 1" />
+        <mesh filename="file://$(find ur3cranfield)/meshes/ur3stand/ur3stand_complete.dae" scale="1 1 1" />
       </geometry>
     </visual>
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/ur3stand_complete.dae" scale="1 1 1" />
+        <mesh filename="file://$(find ur3cranfield)/meshes/ur3stand/ur3stand_complete.dae" scale="1 1 1" />
       </geometry>
     </collision>
     <inertial>
@@ -134,13 +134,13 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
+        <mesh filename="file://$(find ur3cranfield)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
       </geometry>
     </visual>
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
+        <mesh filename="file://$(find ur3cranfield)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
       </geometry>
     </collision>
     <inertial>
@@ -154,13 +154,13 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
+        <mesh filename="file://$(find ur3cranfield)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
       </geometry>
     </visual>
     <collision>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="file://$(find ur3cranfield_gazebo)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
+        <mesh filename="file://$(find ur3cranfield)/meshes/ur3stand/CubeTray.dae" scale="1 1 1" />
       </geometry>
     </collision>
     <inertial>
