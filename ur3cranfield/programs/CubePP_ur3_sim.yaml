@@ -66,8 +66,8 @@ Sequence:
     Name: "[UR3-CubePP(sim)]: Close Gripper."
     Type: "ParallelGripper"
     Action: "CLOSE"
-    Value: 20.0
-    Delay: 0.25
+    Value: 42.0
+    Delay: 1.0
 
   - Step: 6
     Name: "[UR3-CubePP(sim)]: Cube - LiftCube."
@@ -106,7 +106,7 @@ Sequence:
     Speed: 1.0
     Delay: 0.0
     Input:
-      x: -0.213
+      x: -0.212
       y: 0.363
       z: 0.92
       qx: 0.0
@@ -121,7 +121,7 @@ Sequence:
     Speed: 0.1
     Delay: 0.25
     Input:
-      x: -0.213
+      x: -0.212
       y: 0.363
       z: 0.875
       qx: 0.0
@@ -133,7 +133,7 @@ Sequence:
     Name: "[UR3-CubePP(sim)]: Open Gripper."
     Type: "ParallelGripper"
     Action: "OPEN"
-    Delay: 0.25
+    Delay: 1.0
 
   - Step: 11
     Name: "[UR3-CubePP(sim)]: Cube - PlaceApproach."
@@ -142,7 +142,7 @@ Sequence:
     Speed: 0.1
     Delay: 0.0
     Input:
-      x: -0.213
+      x: -0.212
       y: 0.363
       z: 0.92
       qx: 0.0

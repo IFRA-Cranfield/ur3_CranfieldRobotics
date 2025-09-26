@@ -166,7 +166,7 @@ def main(args=None):
     
     # END-EFFECTOR:
     if ENVIRONMENT == "gazebo":
-        ENDEFFECTOR = parallelGR(["RedCube", "BlueCube", "WhiteCube", "GreenCube"], "ur3", "EE_robotiq_hande")
+        ENDEFFECTOR = parallelGR()
     else:
         ENDEFFECTOR = RobotiqGRIPPER()
 
@@ -301,7 +301,7 @@ def main(args=None):
     print("")
 
     if ENVIRONMENT == "gazebo":
-        RES = ENDEFFECTOR.CLOSE(25.0)
+        RES = ENDEFFECTOR.CLOSE(45.0)
     else:
         RES = ENDEFFECTOR.CLOSE()
 

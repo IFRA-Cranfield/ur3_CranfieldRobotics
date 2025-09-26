@@ -105,7 +105,7 @@ Sequence:
     Speed: 1.0
     Delay: 0.0
     Input:
-      x: -0.213
+      x: -0.212
       y: 0.363
       z: 0.92
       qx: 0.0
@@ -120,7 +120,7 @@ Sequence:
     Speed: 0.1
     Delay: 0.25
     Input:
-      x: -0.213
+      x: -0.212
       y: 0.363
       z: 0.875
       qx: 0.0
@@ -141,7 +141,7 @@ Sequence:
     Speed: 0.1
     Delay: 0.0
     Input:
-      x: -0.213
+      x: -0.212
       y: 0.363
       z: 0.92
       qx: 0.0

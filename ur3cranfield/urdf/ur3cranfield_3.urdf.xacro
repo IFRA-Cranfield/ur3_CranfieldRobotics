@@ -78,8 +78,7 @@
   <xacro:unless value="${bringup}">
     
     <gazebo>
-      <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-        <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
 
         <!-- UR3 Controller -->
         <parameters>$(find ros2srrc_robots)/ur3/config/controller.yaml</parameters>
@@ -111,7 +110,7 @@
     </collision>
     <inertial>
       <mass value="1000.0"/>
-      <inertia ixx="500.0" ixy="500.0" ixz="500.0" iyy="500.0" iyz="500.0" izz="500.0" />
+      <inertia ixx="100.0" ixy="0.0" ixz="0.0" iyy="100.0" iyz="0.0" izz="100.0" />
     </inertial>
   </link>
 
@@ -145,7 +144,7 @@
     </collision>
     <inertial>
       <mass value="10.0"/>
-      <inertia ixx="500.0" ixy="500.0" ixz="500.0" iyy="500.0" iyz="500.0" izz="500.0" />
+      <inertia ixx="100.0" ixy="0.0" ixz="0.0" iyy="100.0" iyz="0.0" izz="100.0" />
     </inertial>
   </link>
 
@@ -192,8 +191,9 @@
 
   <!-- CAMERA -->
   <xacro:unless value="${bringup}">
-
+    
     <link name="camera_link">
+    
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -209,47 +209,48 @@
       <inertial>
         <mass value="1.0" />
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
+        <inertia ixx="0.0005" ixy="0.0" ixz="0.0" iyy="0.0005" iyz="0.0" izz="0.0005"/>
       </inertial>
+
     </link>
-    <joint name="camera_joint" type="fixed">
-      <origin xyz="0.0 0.32 2.09" rpy="0.0 1.5708 1.5708"/>
-      <parent link="world"/>
-      <child link="camera_link"/>
-    </joint>
 
     <gazebo reference="camera_link">
+
       <sensor name="camera" type="camera">
+      
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>true</always_on>
         <update_rate>30</update_rate>
+        <visualize>true</visualize>
+
+        <!-- Gz Transport topic -->
+        <topic>/camera/image_raw</topic>
+
         <camera name="head">
+
           <horizontal_fov>1.22</horizontal_fov>
+
           <image>
             <width>1920</width>
             <height>1080</height>
             <format>R8G8B8</format>
           </image>
-          <clip>
-            <near>0.02</near>
-            <far>300</far>
-          </clip>
-          <noise>
-            <type>gaussian</type>
-            <mean>0.0</mean>
-            <stddev>0.007</stddev>
-          </noise>
+
+          <clip><near>0.02</near><far>300</far></clip>
+
+          <camera_info_topic>/camera/camera_info</camera_info_topic>
+
         </camera>
-        <plugin filename="libgazebo_ros_camera.so" name="camera_controller">
-          <robotNamespace/>
-          <alwaysOn>true</alwaysOn>
-          <updateRate>0.0</updateRate>
-          <cameraName>camera</cameraName>
-          <imageTopicName>image_raw</imageTopicName>
-          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
-          <frameName>camera</frameName>
-          <hackBaseline>0.07</hackBaseline>
-        </plugin>
+
       </sensor>
+      
     </gazebo>
+
+    <joint name="camera_joint" type="fixed">
+      <origin xyz="0.0 0.32 2.09" rpy="0.0 1.5708 1.5708"/>
+      <parent link="world"/>
+      <child link="camera_link"/>
+    </joint>
 
   </xacro:unless>
 
