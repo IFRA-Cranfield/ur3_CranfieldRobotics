@@ -64,7 +64,7 @@ Once the environment has been launched, there are few operations that can be don
     ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=ur3_demo
     ```
 
-- Spawn objects into the GzSim Environment: The CAD and URDF files of the objects that are manipulated in our UR3-Cranfield Robot's use-cases are stored in the ur3cranfield package. The objects can be spawned to the Simulation Environment using this command (more info [here](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble/instructions/RobotOperation.md#extra-spawn-object-to-a-gazebo-environment)):
+- Spawn objects into the GzSim Environment: The CAD and SDF files of the objects that are manipulated in our UR3-Cranfield Robot's use-cases are stored in the ur3cranfield package. The objects can be spawned to the Simulation Environment using this command (more info [here](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble/instructions/RobotOperation.md#extra-spawn-object-to-a-gazebo-environment)):
 
     ```sh
     # Generic command:
