@@ -68,10 +68,10 @@ Once the environment has been launched, there are few operations that can be don
 
     ```sh
     # Generic command:
-    ros2 run ros2srrc_execution SpawnObject.py --package "{}" --urdf "{}.urdf" --name "{}" --x {} --y {} --z {}
+    ros2 run ros2srrc_execution SpawnObject.py --package "{}" --sdf "{}.sdf" --name "{}" --x {} --y {} --z {}
 
     # Command to spawn the WHITE CUBE on top of the table:
-    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --urdf "WhiteCube.urdf" --name "WhiteCube" --x 0.0 --y 0.3 --z 1.0
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "WhiteCube.sdf" --name "WhiteCube" --x 0.0 --y 0.3 --z 1.0
     ```
 
     Once the object has been spawned to the simulation environment, its pose can be checked with the following command (for more information, please visit [IFRA-Cranfield/IFRA_ObjectPose](https://github.com/IFRA-Cranfield/IFRA_ObjectPose)):
@@ -127,7 +127,7 @@ __Gazebo Simulation Environment__
 ros2 launch ros2srrc_launch moveit2.launch.py package:=ur3cranfield config:=ur3cranfield_2
 
 # 2. Spawn the cube (WhiteCube, RedCube, GreenCube, BlackCube or BlueCube) on top of the UR3 Table:
-ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --urdf "WhiteCube.urdf" --name "WhiteCube" --x 0.257 --y 0.363 --z 0.92
+ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "WhiteCube.sdf" --name "WhiteCube" --x 0.257 --y 0.363 --z 0.92
 
 # 3. Execute the Cube Pick&Place Robot Program:
 ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=CubePP_ur3_sim # For the simple CubePP task.
@@ -186,10 +186,10 @@ Follow these steps to replicate the coloured cube pose estimation and pick & pla
 3. Spawn any cube to the robot workspace:
 
     ```sh
-    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --urdf "BlueCube.urdf" --name "BlueCube" --x 0.0 --y 0.3 --z 1.0
-    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --urdf "GreenCube.urdf" --name "GreenCube" --x 0.0 --y 0.3 --z 1.0
-    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --urdf "RedCube.urdf" --name "RedCube" --x 0.0 --y 0.3 --z 1.0
-    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --urdf "WhiteCube.urdf" --name "WhiteCube" --x 0.0 --y 0.3 --z 1.0
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "BlueCube.sdf" --name "BlueCube" --x 0.0 --y 0.3 --z 1.0
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "GreenCube.sdf" --name "GreenCube" --x 0.0 --y 0.3 --z 1.0
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "RedCube.sdf" --name "RedCube" --x 0.0 --y 0.3 --z 1.0
+    ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "WhiteCube.sdf" --name "WhiteCube" --x 0.0 --y 0.3 --z 1.0
 
     # The ColouredCubes.pt detection models have been trained to detect blue, green, red and white cubes.
     # Feel free to manually move the cubes around in the simulation environment, the PositionEstimation node will detect them!

@@ -38,6 +38,7 @@ install(
     meshes
     programs
     urdf 
+    sdf
   DESTINATION 
     share/${PROJECT_NAME}
 )
