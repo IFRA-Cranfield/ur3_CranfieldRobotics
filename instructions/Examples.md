@@ -24,7 +24,7 @@ ros2 launch ros2srrc_launch moveit2.launch.py package:=ur3cranfield config:=ur3c
 ros2 launch ros2srrc_launch moveit2.launch.py package:=ur3cranfield config:=ur3cranfield_2
 ```
 
-Once the environment has been launched, there are few operations that can be done to interact with the robot. For more information, please have a look at this [link](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble/instructions/RobotOperation.md).
+Once the environment has been launched, there are few operations that can be done to interact with the robot. For more information, please have a look at this [link](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble-gzfortress/instructions/RobotOperation.md).
 
 - Robot Movement: 
 
@@ -57,14 +57,14 @@ Once the environment has been launched, there are few operations that can be don
     ros2 topic echo /Robpose
     ```
 
-- Execute a Robot Program: The programs for the UR3-Cranfield Robot are stored inside the ur3cranfield ROS 2 Package, /programs folder. The following command is used to execute the programs (for more information, access this [link](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble/instructions/ProgramExecution.md)):
+- Execute a Robot Program: The programs for the UR3-Cranfield Robot are stored inside the ur3cranfield ROS 2 Package, /programs folder. The following command is used to execute the programs (for more information, access this [link](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble-gzfortress/instructions/ProgramExecution.md)):
 
     ```sh
     # Example for the ur3_demo.yaml program:
     ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=ur3_demo
     ```
 
-- Spawn objects into the GzSim Environment: The CAD and SDF files of the objects that are manipulated in our UR3-Cranfield Robot's use-cases are stored in the ur3cranfield package. The objects can be spawned to the Simulation Environment using this command (more info [here](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble/instructions/RobotOperation.md#extra-spawn-object-to-a-gazebo-environment)):
+- Spawn objects into the GzSim Environment: The CAD and SDF files of the objects that are manipulated in our UR3-Cranfield Robot's use-cases are stored in the ur3cranfield package. The objects can be spawned to the Simulation Environment using this command (more info [here](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble-gzfortress/instructions/RobotOperation.md#extra-spawn-object-to-a-gazebo-environment)):
 
     ```sh
     # Generic command:
@@ -74,7 +74,7 @@ Once the environment has been launched, there are few operations that can be don
     ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "WhiteCube.sdf" --name "WhiteCube" --x 0.0 --y 0.3 --z 1.0
     ```
 
-    Once the object has been spawned to the simulation environment, its pose can be checked with the following command (for more information, please visit [IFRA-Cranfield/IFRA_ObjectPose](https://github.com/IFRA-Cranfield/IFRA_ObjectPose)):
+    Once the object has been spawned to the simulation environment, its pose can be checked with the following command (for more information, please visit [IFRA-Cranfield/IFRA_ObjectPose](https://github.com/IFRA-Cranfield/IFRA_ObjectPose/tree/humble-gzfortress)):
     ```sh
     ros2 topic echo /ObjectName/ObjectPose
     ros2 topic echo /WhiteCube/ObjectPose # For the white cube.
