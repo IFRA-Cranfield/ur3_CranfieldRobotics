@@ -1,8 +1,6 @@
 Specifications:
   Robot: "ur3"
   EndEffector: "ParallelGripper"
-  EELink: "EE_robotiq_hande"
-  Objects: ["RedCube","GreenCube","WhiteCube","BlackCube","BlueCube"]
 
 Sequence: 
   
