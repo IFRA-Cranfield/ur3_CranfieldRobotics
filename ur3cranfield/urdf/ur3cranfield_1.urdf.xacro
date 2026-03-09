@@ -46,6 +46,9 @@
   <xacro:arg name="EE_name" default="none"/>
   <xacro:property name="EE_name" value="$(arg EE_name)"/>
 
+  <xacro:arg name="prefix" default=""/>
+  <xacro:property name="prefix" value="$(arg prefix)"/>
+
   <!-- UR3 Control ARGUMENTS -->
   <xacro:arg name="script_filename" default="none"/>
   <xacro:property name="script_filename" value="$(arg script_filename)"/>
@@ -65,6 +68,7 @@
     script_filename="${script_filename}"
     input_recipe_filename="${input_recipe_filename}"
     output_recipe_filename="${output_recipe_filename}"
+    prefix="${prefix}"
   />
 
   <!-- Load ROS 2 Gazebo Plugin -->
@@ -86,7 +90,7 @@
   <link name="world"/>
   
   <!-- Robot Stand: LINK -->
-  <link name='ur3_stand'>
+  <link name='${prefix}ur3_stand'>
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
@@ -106,16 +110,16 @@
   </link>
 
   <!-- Robot Stand: FIXED JOINT -->
-  <joint name="world_joint" type="fixed">
+  <joint name="${prefix}world_joint" type="fixed">
     <parent link="world" />
-    <child link = "ur3_stand" />
+    <child link = "${prefix}ur3_stand" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
   <!-- Robot Stand: Robot+Stand JOINT -->
-  <joint name="ur_joint" type="fixed">
-    <parent link="ur3_stand" />
-    <child link = "base_link" />
+  <joint name="${prefix}ur_joint" type="fixed">
+    <parent link="${prefix}ur3_stand" />
+    <child link = "${prefix}base_link" />
     <origin xyz="0.0 0.0 0.85" rpy="0.0 0.0 0.0" /> 
   </joint>
 
