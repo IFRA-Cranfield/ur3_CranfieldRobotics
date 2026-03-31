@@ -46,6 +46,9 @@
   <xacro:arg name="EE_name" default="none"/>
   <xacro:property name="EE_name" value="$(arg EE_name)"/>
 
+  <xacro:arg name="prefix" default=""/>
+  <xacro:property name="prefix" value="$(arg prefix)"/>
+
   <!-- UR3 Control ARGUMENTS -->
   <xacro:arg name="script_filename" default="none"/>
   <xacro:property name="script_filename" value="$(arg script_filename)"/>
@@ -65,13 +68,15 @@
     script_filename="${script_filename}"
     input_recipe_filename="${input_recipe_filename}"
     output_recipe_filename="${output_recipe_filename}"
+    prefix="${prefix}"
   />
 
   <!-- Include XACRO-MACRO file of the Robotiq HandE: -->
   <xacro:include filename="$(find ros2srrc_endeffectors)/robotiq_hande/urdf/robotiq_hande_macro.urdf.xacro"/>	
   <xacro:robotiq_hande
     bringup="${bringup}"
-    parent_link="tool0"
+    parent_link="${prefix}tool0"
+    prefix="${prefix}"
   />
 
   <!-- Load ROS 2 Gazebo Plugin -->
@@ -95,7 +100,7 @@
   <link name="world"/>
   
   <!-- Robot Stand: LINK -->
-  <link name='ur3_stand'>
+  <link name='${prefix}ur3_stand'>
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
@@ -115,21 +120,21 @@
   </link>
 
   <!-- Robot Stand: FIXED JOINT -->
-  <joint name="world_joint" type="fixed">
+  <joint name="${prefix}world_joint" type="fixed">
     <parent link="world" />
-    <child link = "ur3_stand" />
+    <child link = "${prefix}ur3_stand" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
   <!-- Robot Stand: Robot+Stand JOINT -->
-  <joint name="ur_joint" type="fixed">
-    <parent link="ur3_stand" />
-    <child link = "base_link" />
+  <joint name="${prefix}ur_joint" type="fixed">
+    <parent link="${prefix}ur3_stand" />
+    <child link = "${prefix}base_link" />
     <origin xyz="0.0 0.0 0.85" rpy="0.0 0.0 0.0" /> 
   </joint>
 
   <!-- ERGOBOX -->
-  <link name="ergobox">
+  <link name="${prefix}ergobox">
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
       <geometry>
@@ -149,9 +154,9 @@
   </link>
 
   <!-- Ergobox: FIXED JOINT -->
-  <joint name="ergobox-ur3stand-fixed" type="fixed">
-    <parent link="ur3_stand"/>
-    <child link="ergobox"/>
+  <joint name="${prefix}ergobox-ur3stand-fixed" type="fixed">
+    <parent link="${prefix}ur3_stand"/>
+    <child link="${prefix}ergobox"/>
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
   </joint>
 
@@ -159,7 +164,7 @@
   <xacro:unless value="${bringup}">
 
     <!-- ARUCO GRID -->
-    <link name="aruco_grid">
+    <link name="${prefix}aruco_grid">
       <visual>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
         <geometry>
@@ -177,13 +182,13 @@
         <inertia ixx="0.0002" ixy="0.0002" ixz="0.0002" iyy="0.0" iyz="0.0" izz="0.0" />
       </inertial>
     </link>
-    <joint name="ur3stand-aruco_grid-fixed" type="fixed">
-      <parent link="ur3_stand"/>
-      <child link="aruco_grid"/>
+    <joint name="${prefix}ur3stand-aruco_grid-fixed" type="fixed">
+      <parent link="${prefix}ur3_stand"/>
+      <child link="${prefix}aruco_grid"/>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     </joint>
 
-    <gazebo reference="cell-aruco_grid-fixed">
+    <gazebo reference="${prefix}ur3stand-aruco_grid-fixed">
       <preserveFixedJoint>true</preserveFixedJoint>
     </gazebo>
 
@@ -192,7 +197,7 @@
   <!-- CAMERA -->
   <xacro:unless value="${bringup}">
     
-    <link name="camera_link">
+    <link name="${prefix}camera_link">
     
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -214,9 +219,9 @@
 
     </link>
 
-    <gazebo reference="camera_link">
+    <gazebo reference="${prefix}camera_link">
 
-      <sensor name="camera" type="camera">
+      <sensor name="${prefix}camera" type="camera">
       
         <pose>0 0 0 0 0 0</pose>
         <always_on>true</always_on>
