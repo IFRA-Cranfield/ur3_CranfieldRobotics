@@ -27,7 +27,7 @@
 
         <geometry>
           <mesh>
-            <uri>meshes/objects/GreenCube.dae</uri>
+            <uri>$(mesh_uri)</uri>
           </mesh>
         </geometry>
 
@@ -39,7 +39,7 @@
 
         <geometry>
           <mesh>
-            <uri>meshes/objects/GreenCube.dae</uri>
+            <uri>$(mesh_uri)</uri>
           </mesh>
         </geometry>
 

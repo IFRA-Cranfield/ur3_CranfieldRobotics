@@ -179,7 +179,7 @@
       </collision>
       <inertial>
         <mass value="10.0"/>
-        <inertia ixx="0.0002" ixy="0.0002" ixz="0.0002" iyy="0.0" iyz="0.0" izz="0.0" />
+        <inertia ixx="0.04" ixy="0.0" ixz="0.0" iyy="0.04" iyz="0.0" izz="0.04" />
       </inertial>
     </link>
     <joint name="${prefix}ur3stand-aruco_grid-fixed" type="fixed">
