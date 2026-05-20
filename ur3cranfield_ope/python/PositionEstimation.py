@@ -39,7 +39,7 @@ sys.dont_write_bytecode = True
 # ===== IMPORT REQUIRED COMPONENTS ===== #
 import os, sys
 
-# Required to include ROS2 and its components:
+# Required to include ROS 2 and its components:
 import rclpy
 from rclpy.node import Node
 
@@ -49,7 +49,7 @@ from sensor_msgs.msg import Image
 
 # OpenCV:
 import cv2
-# ROS2 to OpenCV -> cv_bridge:
+# ROS 2 to OpenCV -> cv_bridge:
 from cv_bridge import CvBridge, CvBridgeError
 
 # YOLO:
@@ -68,17 +68,17 @@ class GazeboCamera(Node):
         self.SubIMAGE = self.create_subscription(Image, "/camera/image_raw", self.CALLBACK_FN, 10)
         self.BRIDGE = CvBridge()
 
-    def CALLBACK_FN(self, ROS2img):
+    def CALLBACK_FN(self, ros2_img):
 
-        global Gz_CAM
+        global GZ_CAM
 
         try:
-            Gz_CAM = self.BRIDGE.imgmsg_to_cv2(ROS2img, "bgr8")
+            GZ_CAM = self.BRIDGE.imgmsg_to_cv2(ros2_img, "bgr8")
         except CvBridgeError as ERR:
-            print("(cv_bridge): ERROR -> " + ERR) 
+            print("(cv_bridge): ERROR -> " + ERR)
             print("")
 
-# ===== EVALUATE INPUT ARGUMENTS ===== #         
+# ===== EVALUATE INPUT ARGUMENTS ===== #
 def AssignArgument(ARGUMENT):
     ARGUMENTS = sys.argv
     for y in ARGUMENTS:
@@ -89,7 +89,7 @@ def AssignArgument(ARGUMENT):
 # ===== TRAIN MODEL ===== #
 def main(args=None):
 
-    global Gz_CAM
+    global GZ_CAM
 
     print("")
     print(" --- Cranfield University --- ")
@@ -152,7 +152,7 @@ def main(args=None):
         print("Selected YOLO model file not found. Please double check and try again.")
         print("Closing... BYE!")
         exit()
-    
+
     # YOLOmodel:
     YOLOmodel = YOLO(modelPATH)
     names = YOLOmodel.names
@@ -168,7 +168,7 @@ def main(args=None):
     PUBnode = rclpy.create_node("ros2ope_PUBLISHER")
 
     PUBList = {}
-    for x in ObjectList:  
+    for x in ObjectList:
         TopicName = "/" + x + "/ObjectPoseEstimation"
         PUBList[x] = PUBnode.create_publisher(ObjectPose, TopicName, 10)
 
@@ -177,29 +177,29 @@ def main(args=None):
 
     # Run execution-PREDICTION INFERENCE:
     while True:
-        
+
         if ENVIRONMENT == "gazebo":
             rclpy.spin_once(CAMERA)
-            inputIMG = Gz_CAM
+            inputIMG = GZ_CAM
         elif ENVIRONMENT == "robot":
             ret, inputIMG = CAMERA.read()
 
         if inputIMG is not None:
-            
+
             # A. DETECT ARUCO and RETURN ARUCO POSITION:
             ARUCO_RES = GRID.detectGRID(inputIMG)
 
             if not ARUCO_RES["Success"]:
                 print("ERROR: ArUco grid detection lost. Please check ArUco markers are visible!")
                 print("")
-                
+
             else:
-                
+
                 convertedIMG = ARUCO_RES["GRID"]
 
                 # B. EXECUTE YOLO-based object detection:
                 PREDICTION = YOLOmodel.predict(convertedIMG, verbose=False)
-                
+
                 for R in PREDICTION:
 
                     boxes = R.boxes
@@ -209,7 +209,7 @@ def main(args=None):
                         # Get NAME of the detected OBJECT:
                         C = int(box.cls)
                         ObjectName = YOLOmodel.names[C]
-                        
+
                         ConfLevel = box.conf.item() # LEVEL OF CONFIDENCE.
                         B = box.xyxy[0] # Detected object's BOUNDING BOX.
 
@@ -223,25 +223,25 @@ def main(args=None):
 
                             print("=== PIXEL COORDINATES ===")
                             print("NAME: " + ObjectName + " X: " + str(BBx.item()) +", Y: " + str(BBy.item()))
-                            
+
                             # CALCULATE x and y COORDINATES of OBJECT:
                             OBJx = BBy/1000
                             OBJy = BBx/1000
-                            
+
                             # CALCULATE OBJECT COORDINATES RELATIVE TO ARUCO:
                             X = float(OBJx.item())
                             Y = float(OBJy.item())
-                            
+
                             print("=== LOCAL COORDINATES (ArUco Grid) ===")
                             print("NAME: " + ObjectName + " X: " + str(X) +", Y: " + str(Y))
-                            
+
                             # APPLY -> Corrections:
                             (X,Y) = GRID.applyCORRECTION(X,Y, ENVIRONMENT)
-                            
+
                             print("=== GLOBAL COORDINATES (CORRECTED) ===")
                             print("NAME: " + ObjectName + " X: " + str(X) +", Y: " + str(Y))
                             print("")
-                            
+
                             # PUBLISH POSE:
                             POSE = ObjectPose()
                             POSE.objectname = ObjectName
@@ -258,11 +258,11 @@ def main(args=None):
                             # To visualize pose next to objects:
                             LABEL = ObjectName + " -> x: " + str(X) + ", y: " + str(Y)
                             cv2.putText(convertedIMG, LABEL, (int(B[0]), int(B[1]) - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,0), 2)
-                        
+
                     print("")
 
                 if VISUALIZE:
-                    
+
                     WINDOW = cv2.resize(convertedIMG, (850, 480))
                     TITLE = "YOLO MODEL -> " + MODELname + " PREDICTION RESULTS and OBJECT POSITION ESTIMATION"
                     cv2.imshow(TITLE, WINDOW)

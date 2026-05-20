@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  
+
   <name>ur3cranfield_ope</name>
   <version>0.0.0</version>
   <description>IFRA-Cranfield (Cranfield University, UK). Package: UR3 (Cranfield Robotics) - Object Pose Estimation Package</description>
-  
+
   <author>Mikel Bueno Viso</author>
   <maintainer email="Mikel.Bueno-Viso@cranfield.ac.uk">Mikel Bueno Viso</maintainer>
-  
-  <license>TODO: License declaration</license>
+
+  <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

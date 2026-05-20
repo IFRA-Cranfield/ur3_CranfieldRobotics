@@ -41,12 +41,12 @@ sys.dont_write_bytecode = True
 # System functions and classes:
 import sys, os, time
 
-# Required to include ROS2 and its components:
+# Required to include ROS 2 and its components:
 import rclpy
 from rclpy.node import Node
 from ament_index_python.packages import get_package_share_directory
 
-# IMPORT ROS2 Custom Messages:
+# IMPORT ROS 2 custom messages:
 from objectpose_msgs.msg import ObjectPose
 from ros2srrc_data.msg import Action
 from ros2srrc_data.msg import Joint
@@ -71,16 +71,16 @@ from robotiq_ur import RobotiqGRIPPER
 sys.path.append(PATH_endeffector_gz)
 from parallelGripper import parallelGR
 
-# ==================================================================== #  
-# ==================================================================== # 
+# ==================================================================== #
+# ==================================================================== #
 
-# ===== CUBE POSE - SUBSCRIBER NODE ===== #  
+# ===== CUBE POSE - SUBSCRIBER NODE ===== #
 class CubePose(Node):
 
     def __init__(self, OBJECT):
 
         super().__init__("ur3cranfield_ope_cubepose")
-        
+
         TopicName = "/" + OBJECT + "/ObjectPoseEstimation"
         self.SUB = self.create_subscription(ObjectPose, TopicName, self.CALLBACK_FN, 10)
 
@@ -88,7 +88,7 @@ class CubePose(Node):
         self.FOUND = False
 
     def CALLBACK_FN(self, POSE):
-        
+
         self.POSE = POSE
         self.FOUND = True
 
@@ -96,26 +96,26 @@ class CubePose(Node):
 
         T = time.time() + 3.0
         while time.time() < T:
-            
+
             rclpy.spin_once(self, timeout_sec=0.5)
 
             if self.FOUND == True:
-                
+
                 self.FOUND = False
                 return({"Success": True, "Pose": self.POSE})
-            
+
         return({"Success": False, "Pose": None})
 
-# ===== EVALUATE INPUT ARGUMENTS ===== #         
+# ===== EVALUATE INPUT ARGUMENTS ===== #
 def AssignArgument(ARGUMENT):
     ARGUMENTS = sys.argv
     for y in ARGUMENTS:
         if (ARGUMENT + ":=") in y:
             ARG = y.replace((ARGUMENT + ":="),"")
             return(ARG)
-        
-# ==================================================================== # 
-# ==================================================================== # 
+
+# ==================================================================== #
+# ==================================================================== #
 
 def close():
 
@@ -160,10 +160,10 @@ def main(args=None):
     # ====================================== #
 
     # 0. Initialise ROBOT, END-EFFECTOR and OBJPOSE SUBSCRIBER nodes:
-    
+
     # ROBOT:
     ROBOT = RBT()
-    
+
     # END-EFFECTOR:
     if ENVIRONMENT == "gazebo":
         ENDEFFECTOR = parallelGR()
@@ -181,7 +181,7 @@ def main(args=None):
     ACTION = Action()
     ACTION.action = "MoveJ"
     ACTION.speed = 1.0
-    
+
     INPUT = Joints()
     INPUT.joint1 = 180.0
     INPUT.joint2 = -90.0
@@ -225,7 +225,7 @@ def main(args=None):
     ACTION = Action()
     ACTION.action = "MoveJ"
     ACTION.speed = 1.0
-    
+
     INPUT = Joints()
     INPUT.joint1 = 90.0
     INPUT.joint2 = -90.0
@@ -439,7 +439,7 @@ def main(args=None):
     ACTION = Action()
     ACTION.action = "MoveJ"
     ACTION.speed = 1.0
-    
+
     INPUT = Joints()
     INPUT.joint1 = 180.0
     INPUT.joint2 = -90.0
