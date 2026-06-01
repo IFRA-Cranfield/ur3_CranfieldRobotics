@@ -32,7 +32,7 @@
 
 <!--
 
-  README.md TEMPLATE obtined from:
+  README.md TEMPLATE obtained from:
       https://github.com/othneildrew/Best-README-Template
       AUTHOR: OTHNEIL DREW 
 

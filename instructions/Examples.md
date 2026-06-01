@@ -4,7 +4,7 @@
 
 ### Gazebo Simulation
 
-This environment does not have any particular use/application, but simply visualizing the UR3 robot and it's end-effectors and stand in the Simulation Environment. Execute the following command to launch a ROS 2-Gazebo Simulation Environment of the UR3-Cranfield Robot:
+This environment does not have any particular use/application, but simply visualizing the UR3 robot and its end-effectors and stand in the Simulation Environment. Execute the following command to launch a ROS 2-Gazebo Simulation Environment of the UR3-Cranfield Robot:
 
 ```sh
 # UR3 Robot alone on Cranfield University (IA Lab) Stand:
@@ -33,7 +33,7 @@ Once the environment has been launched, there are few operations that can be don
     ros2 action send_goal -f /Move ros2srrc_data/action/Move "{action: 'MoveJ', movej: {joint1: 0.00, joint2: 0.00, joint3: 0.00, joint4: 0.00, joint5: 0.00, joint6: 0.00}, speed: 1.0}"
     # MoveL:
     ros2 action send_goal -f /Move ros2srrc_data/action/Move "{action: 'MoveL', movel: {x: 0.00, y: 0.00, z: 0.00}, speed: 1.0}"
-    # MOveR:
+    # MoveR:
     ros2 action send_goal -f /Move ros2srrc_data/action/Move "{action: 'MoveR', mover: {joint: '--', value: 0.00}, speed: 1.0}"
     # MoveROT:
     ros2 action send_goal -f /Move ros2srrc_data/action/Move "{action: 'MoveROT', moverot: {yaw: 0.00, pitch: 0.00, roll: 0.00}, speed: 1.0}"
@@ -51,7 +51,7 @@ Once the environment has been launched, there are few operations that can be don
     ```sh
     # To check the state of the joints:
     ros2 run ros2srrc_execution RobotState.py
-    ros 2 topic echo /joint_states
+    ros2 topic echo /joint_states
 
     # To check the end-effector pose:
     ros2 topic echo /Robpose
@@ -82,7 +82,7 @@ Once the environment has been launched, there are few operations that can be don
 
 ### MoveIt!2-based Control of the Real Robot
 
-For more detailed instructions on how properly set-up any UR Robot for ROS 2 and to connect to the UR3 robot, please visit this [link-TBD]. Once that is ready, you can execute the following command to launch the UR's ROS 2 driver along with MoveIt!2, and our custom ROS 2 tools for robot operation:
+For more detailed instructions on how to properly set up any UR robot for ROS 2 and connect to the UR3 robot, please see this [link-TBD]. Once that is ready, you can execute the following command to launch the UR's ROS 2 driver along with MoveIt!2, and our custom ROS 2 tools for robot operation:
 
 ```sh
 # In this set-up, we consider:

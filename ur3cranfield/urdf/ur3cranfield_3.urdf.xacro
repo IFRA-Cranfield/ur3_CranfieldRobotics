@@ -189,7 +189,7 @@
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     </joint>
 
-    <gazebo reference="${prefix}cell-aruco_grid-fixed">
+    <gazebo reference="${prefix}ur3stand-aruco_grid-fixed">
       <preserveFixedJoint>true</preserveFixedJoint>
     </gazebo>
 
