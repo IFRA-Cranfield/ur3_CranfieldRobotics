@@ -32,7 +32,7 @@
 
 <!--
 
-  README.md TEMPLATE obtined from:
+  README.md TEMPLATE obtained from:
       https://github.com/othneildrew/Best-README-Template
       AUTHOR: OTHNEIL DREW 
 
@@ -117,8 +117,8 @@ The UR3_CranfieldRobotics repository contains a set of ROS 2 packages developed 
 
 For detailed information on installation, usage, and requirements, please refer to the following documentation files available in this repository:
 
-- [Installation.md](https://github.com/IFRA-Cranfield/ur3_CranfieldRobotics/tree/humble-gzfortress/instructions/Installation.md): Instructions for setting up and installing the required dependencies.
-- [Examples.md](https://github.com/IFRA-Cranfield/ur3_CranfieldRobotics/tree/humble-gzfortress/instructions/Examples.md): Guidelines for launching the ros2srrc-based ROS 2 Robot Simulation and Control environment for our UR3 Robot at Cranfield.
+- [Installation.md](https://github.com/IFRA-Cranfield/ur3_CranfieldRobotics/tree/jazzy/instructions/Installation.md): Instructions for setting up and installing the required dependencies.
+- [Examples.md](https://github.com/IFRA-Cranfield/ur3_CranfieldRobotics/tree/jazzy/instructions/Examples.md): Guidelines for launching the ros2srrc-based ROS 2 Robot Simulation and Control environment for our UR3 Robot at Cranfield.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -203,6 +203,6 @@ For detailed information on installation, usage, and requirements, please refer 
 ## Acknowledgments
 
 * [README.md template - Othneil Drew](https://github.com/othneildrew/Best-README-Template).
-* [ROS 2 Documentation - Humble](https://docs.ros.org/en/humble/index.html).
+* [ROS 2 Documentation - Jazzy](https://docs.ros.org/en/jazzy/).
 
 <p align="right">(<a href="#top">back to top</a>)</p>

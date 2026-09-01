@@ -2,9 +2,9 @@
 
 ## UR3 Robot Simulation and Control using ROS 2: Practical Examples
 
-### Gazebo Fortress / GZ Sim
+### Gazebo Harmonic / GZ Sim
 
-This environment does not have any particular use/application, but simply visualizing the UR3 robot and its end-effectors and stand in the simulation environment. Execute the following command to launch a Gazebo Fortress / GZ Sim environment of the UR3-Cranfield Robot:
+This environment does not have any particular use/application, but simply visualizing the UR3 robot and its end-effectors and stand in the simulation environment. Execute the following command to launch a Gazebo Harmonic / GZ Sim environment of the UR3-Cranfield Robot:
 
 ```sh
 # UR3 Robot alone on Cranfield University (IA Lab) Stand:
@@ -13,9 +13,9 @@ ros2 launch ros2srrc_launch simulation.launch.py package:=ur3cranfield config:=u
 ros2 launch ros2srrc_launch simulation.launch.py package:=ur3cranfield config:=ur3cranfield_2
 ```
 
-### Gazebo Fortress / GZ Sim + MoveIt!2-based Robot Control
+### Gazebo Harmonic / GZ Sim + MoveIt!2-based Robot Control
 
-Execute the following command to launch the Gazebo Fortress / GZ Sim environment along with the MoveIt!2 Framework, enabling the robot to be controlled, monitored, and operated through MoveIt!2. It also loads RViz for visualization and gives access to the custom ROS 2 tools (/Move, /Robmove, /Robpose) for robot manipulation and monitoring.
+Execute the following command to launch the Gazebo Harmonic / GZ Sim environment along with the MoveIt!2 Framework, enabling the robot to be controlled, monitored, and operated through MoveIt!2. It also loads RViz for visualization and gives access to the custom ROS 2 tools (/Move, /Robmove, /Robpose) for robot manipulation and monitoring.
 
 ```sh
 # UR3 Robot alone on Cranfield University (IA Lab) Stand:
@@ -24,7 +24,7 @@ ros2 launch ros2srrc_launch moveit2.launch.py package:=ur3cranfield config:=ur3c
 ros2 launch ros2srrc_launch moveit2.launch.py package:=ur3cranfield config:=ur3cranfield_2
 ```
 
-Once the environment has been launched, there are few operations that can be done to interact with the robot. For more information, please have a look at this [link](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble-gzfortress/instructions/RobotOperation.md).
+Once the environment has been launched, there are few operations that can be done to interact with the robot. For more information, please have a look at this [link](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/jazzy/instructions/RobotOperation.md).
 
 - Robot movement:
 
@@ -57,14 +57,14 @@ Once the environment has been launched, there are few operations that can be don
     ros2 topic echo /Robpose
     ```
 
-- Execute a robot program: The programs for the UR3-Cranfield Robot are stored inside the ur3cranfield ROS 2 package, /programs folder. The following command is used to execute the programs (for more information, access this [link](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble-gzfortress/instructions/ProgramExecution.md)):
+- Execute a robot program: The programs for the UR3-Cranfield Robot are stored inside the ur3cranfield ROS 2 package, /programs folder. The following command is used to execute the programs (for more information, access this [link](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/jazzy/instructions/ProgramExecution.md)):
 
     ```sh
     # Example for the ur3_demo.yaml program:
     ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=ur3_demo
     ```
 
-- Spawn objects into the GZ Sim environment: The CAD and SDF files of the objects that are manipulated in our UR3-Cranfield Robot's use-cases are stored in the ur3cranfield package. The objects can be spawned to the simulation environment using this command (more info [here](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/humble-gzfortress/instructions/RobotOperation.md#extra-spawn-object-to-a-gazebo-environment)):
+- Spawn objects into the GZ Sim environment: The CAD and SDF files of the objects that are manipulated in our UR3-Cranfield Robot's use-cases are stored in the ur3cranfield package. The objects can be spawned to the simulation environment using this command (more info [here](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/jazzy/instructions/RobotOperation.md#extra-spawn-object-to-a-gazebo-environment)):
 
     ```sh
     # Generic command:
@@ -74,7 +74,7 @@ Once the environment has been launched, there are few operations that can be don
     ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "WhiteCube.sdf" --name "WhiteCube" --x 0.0 --y 0.3 --z 1.0
     ```
 
-    Once the object has been spawned to the simulation environment, its pose can be checked with the following command (for more information, please visit [IFRA-Cranfield/IFRA_ObjectPose](https://github.com/IFRA-Cranfield/IFRA_ObjectPose/tree/humble-gzfortress)):
+    Once the object has been spawned to the simulation environment, its pose can be checked with the following command (for more information, please visit [IFRA-Cranfield/IFRA_ObjectPose](https://github.com/IFRA-Cranfield/IFRA_ObjectPose/tree/jazzy)):
     ```sh
     ros2 topic echo /ObjectName/ObjectPose
     ros2 topic echo /WhiteCube/ObjectPose # For the white cube.
@@ -97,7 +97,7 @@ ros2 launch ros2srrc_launch bringup_ur.launch.py package:=ur3cranfield config:=u
 
 Once the _robot bringup_ environment has been launched, the variety of tasks that can be done with the real robot are exactly the same as in simulation, with a few exceptions:
 
-- Robot movements are exactly the same, but MoveG won't be available (this is only for Gazebo Fortress / GZ Sim). In order to operate the Robotiq gripper in the real UR3 robot, IFRA-Cranfield's [ros2_RobotiqGripper](https://github.com/IFRA-Cranfield/ros2_RobotiqGripper) driver is used:
+- Robot movements are exactly the same, but MoveG won't be available (this is only for Gazebo Harmonic / GZ Sim). In order to operate the Robotiq gripper in the real UR3 robot, IFRA-Cranfield's [ros2_RobotiqGripper](https://github.com/IFRA-Cranfield/ros2_RobotiqGripper) driver is used:
 
     ```sh
     # The ROS 2 server that operates the gripper is automatically launched within the bringup_ur.launch.py file.
@@ -116,11 +116,11 @@ Once the _robot bringup_ environment has been launched, the variety of tasks tha
     ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=ur3_demo
     ```
 
-- Object spawn feature is not available (this feature is only for Gazebo Fortress / GZ Sim).
+- Object spawn feature is not available (this feature is only for Gazebo Harmonic / GZ Sim).
 
 ### Use-Case Application: Cube Pick and Place Task
 
-__Gazebo Fortress / GZ Sim environment__
+__Gazebo Harmonic / GZ Sim environment__
 
 ```sh
 # 1. Launch the Sim Environment for the P&P Task:
@@ -130,8 +130,7 @@ ros2 launch ros2srrc_launch moveit2.launch.py package:=ur3cranfield config:=ur3c
 ros2 run ros2srrc_execution SpawnObject.py --package "ur3cranfield" --sdf "WhiteCube.sdf" --name "WhiteCube" --x 0.257 --y 0.363 --z 0.92
 
 # 3. Execute the Cube Pick&Place robot program:
-ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=CubePP_ur3_sim # For the simple CubePP task.
-ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=CubeTrayPP_ur3_sim # For the CubeTrayPP demo.
+ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=CubePP_ur3_sim
 ```
 
 __Real UR3 Robot__
@@ -143,8 +142,7 @@ ros2 launch ros2srrc_launch bringup_ur.launch.py package:=ur3cranfield config:=u
 # 2. Place any cube inside the bottom-left slot of the left-tray on top of the UR3 Table.
 
 # 3. Execute the Cube Pick&Place robot program:
-ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=CubePP_ur3 # For the simple CubePP task.
-ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=CubeTrayPP_ur3 # For the CubeTrayPP demo.
+ros2 run ros2srrc_execution ExecuteProgram.py package:=ur3cranfield program:=CubePP_ur3
 ```
 
 ### Object Pose Estimation using YOLO and OpenCV
@@ -157,21 +155,21 @@ The ur3cranfield_ope ROS 2 package performs real-time object pose estimation wit
 
 - Finally, the estimated object poses are live published to a dedicated ROS 2 topic, allowing seamless communication and integration with the robot's control system.
 
-__Coloured Cube Pose Estimation: Gazebo Fortress / GZ Sim__
+__Coloured Cube Pose Estimation: Gazebo Harmonic / GZ Sim__
 
 Follow these steps to replicate the coloured cube pose estimation and pick & place task in simulation:
 
-1. Launch the Gazebo Fortress / GZ Sim environment + MoveIt!2 Framework for the task:
+1. Launch the Gazebo Harmonic / GZ Sim environment + MoveIt!2 Framework for the task:
 
     ```sh
     ros2 launch ros2srrc_launch moveit2.launch.py package:=ur3cranfield config:=ur3cranfield_3
     ```
 
-2. Run the Cube Pose Estimation ROS 2 node:
+2. Run the Cube Pose Estimation ROS 2 node using the dedicated `ifra_ope` environment:
 
     ```sh
-    # Execute the PositionEstimation.py script:
-    ros2 run ur3cranfield_ope PositionEstimation.py environment:=gazebo model:=ColouredCubes_ur3 visualize:=true
+    source ~/venvs/ifra_ope/bin/activate
+    python3 "$HOME/dev_ws/src/ur3_CranfieldRobotics/ur3cranfield_ope/python/PositionEstimation.py" environment:=gazebo model:=ColouredCubes_ur3 visualize:=true
 
     # This script has the following input parameters:
     #   - environment: gazebo/robot -> To select between the simulation or real camera.
@@ -223,11 +221,11 @@ Follow these steps to replicate the coloured cube pose estimation and pick & pla
     ros2 launch ros2srrc_launch bringup_ur.launch.py package:=ur3cranfield config:=ur3cranfield_3 robot_ip:=192.168.1.10
     ```
 
-2. Run the Cube Pose Estimation ROS 2 node:
+2. Run the Cube Pose Estimation ROS 2 node using the dedicated `ifra_ope` environment:
 
     ```sh
-    # Execute the PositionEstimation.py script:
-    ros2 run ur3cranfield_ope PositionEstimation.py environment:=robot model:=ColouredCubes_ur3 visualize:=true
+    source ~/venvs/ifra_ope/bin/activate
+    python3 "$HOME/dev_ws/src/ur3_CranfieldRobotics/ur3cranfield_ope/python/PositionEstimation.py" environment:=robot model:=ColouredCubes_ur3 visualize:=true
 
     # This script has the following input parameters:
     #   - environment: gazebo/robot -> To select between the simulation or real camera.
@@ -245,9 +243,9 @@ Follow these steps to replicate the coloured cube pose estimation and pick & pla
     # Manually locate the coloured cubes on top of the robot workspace.
 
     # The ColouredCubes.pt detection models have been trained to detect blue, green, red and white cubes.
-    # Feel free to manually move the cubes around in the simulation environment, the PositionEstimation node will detect them!
+    # Feel free to manually move the cubes around in the robot workspace, the PositionEstimation node will detect them!
 
-    # Once the cubes have been spawned, you will be able to monitor their estimated position using:
+    # Once the cubes have been placed, you will be able to monitor their estimated position using:
     ros2 topic list
     ros2 topic echo /BlueCube/ObjectPoseEstimation
     ros2 topic echo /GreenCube/ObjectPoseEstimation

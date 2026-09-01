@@ -47,7 +47,7 @@
 
     </link>
 
-    <!-- ObjectPose plugin (Gazebo Fortress system plugin) -->
+    <!-- ObjectPose plugin (Gazebo Harmonic system plugin) -->
     <plugin name="ros2_objectpose_plugin" filename="libros2_objectpose_plugin.so">
       <topic>$(name)/ObjectPose</topic>
       <object_name>$(name)</object_name>

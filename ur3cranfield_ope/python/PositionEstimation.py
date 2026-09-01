@@ -58,6 +58,8 @@ from ultralytics import YOLO
 # ARUCO:
 from arucoGRID import grid
 
+GZ_CAM = None
+
 # ================================================== #
 # CLASS -> GazeboCamera:
 class GazeboCamera(Node):
