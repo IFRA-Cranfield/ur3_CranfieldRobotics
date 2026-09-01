@@ -19,7 +19,7 @@ cd ~/dev_ws
 colcon build
 ```
 
-__Install OpenCV and YOLO: Required for the Object Pose Estimation (_ope) ROS 2 Package__
+__Install OpenCV and YOLO: Required for the Object Pose Estimation (ope) ROS 2 Package__
 
 The object pose estimation nodes require a dedicated Python environment in Ubuntu 24.04 and ROS 2 Jazzy:
 
