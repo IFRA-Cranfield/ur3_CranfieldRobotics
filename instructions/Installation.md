@@ -4,11 +4,11 @@
 
 The steps below must be followed in order to properly set up a ROS 2 Jazzy machine which is needed for the usage of the ROS 2 packages in the ur3_CranfieldRobotics repository. It is recommended to install Ubuntu 24.04 Desktop on your PC for optimal performance, but a VM could be used for simple simulations and executions.
 
-__REQUIRED: Install the ros2_SimRealRobotControl GitHub repository__
+__REQUIRED: Install the ros2srrc GitHub repository__
 
-The ROS 2 packages developed in UR3-CranfieldRobotics are based on IFRA-Cranfield's [ros2_SimRealRobotControl](https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/tree/jazzy) GitHub repository. Therefore, ros2_SimRealRobotControl must be installed in order to set up UR3-CR in any Ubuntu 24.04 + ROS 2 Jazzy machine.
+The ROS 2 packages developed in UR3-CranfieldRobotics are based on IFRA-Cranfield's [ros2srrc](https://github.com/IFRA-Cranfield/ros2srrc/tree/jazzy) GitHub repository. Therefore, ros2srrc must be installed in order to set up UR3-CR in any Ubuntu 24.04 + ROS 2 Jazzy machine.
 
-Installation steps can be found at: https://github.com/IFRA-Cranfield/ros2_SimRealRobotControl/blob/jazzy/instructions/Installation.md
+Installation steps can be found at: https://github.com/IFRA-Cranfield/ros2srrc/blob/jazzy/instructions/Installation.md
 
 __Download and install ur3_CranfieldRobotics__
 
